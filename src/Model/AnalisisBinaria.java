@@ -7,7 +7,9 @@ package Model;
 
 /**
  *
- * @author AlexMarceloCastillo
+ * @author Alexander Marcelo Castillo
+ * usuario git: AlexMarceloCastillo
+ * link: https://github.com/AlexMarceloCastillo
  */
 public class AnalisisBinaria {
       /**
@@ -242,7 +244,7 @@ public class AnalisisBinaria {
     }
 
     /*
-     * Función multiplicación binaria, solo para funcion 'transitiva'.
+     * Función multiplicación binaria, solo y explusivamente para funcion 'transitiva'.
      */
     private void multplicacionBinaria(int [][]a,int [][]b,int [][]c){
         for (int i = 0; i < a.length; i++) {
