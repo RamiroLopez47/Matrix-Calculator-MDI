@@ -13,5 +13,7 @@ package Controller;
  * @version 2
  */
 public class Controlador {
-    
+
+    public Controlador() {
+    }
 }
