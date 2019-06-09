@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import View.VentanaPrincipal;
+
 /**
  *
  * @author CATTANI, Marcelo Omar.
@@ -14,6 +16,18 @@ package Controller;
  */
 public class Controlador {
 
-    public Controlador() {
+   VentanaPrincipal ventana;
+    
+    public Controlador(VentanaPrincipal ventana) {
+        this.ventana = ventana;
+        ventana.setBounds(0, 0, 200, 300);        
+        
     }
+    /**
+     * Lanza la ventana haciendola visible para el usuario
+     */
+    public void lanzar(){
+        ventana.setVisible(true);
+    }
+    
 }
