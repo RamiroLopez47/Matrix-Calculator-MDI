@@ -21,7 +21,6 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * 
  */
 public class VentanaPrincipal extends JFrame {
-
     private JMenuBar JMBmenuBar;//Menu bar
     private JMenu JMarchivo, JMmatrizDecimal, JMmatriz_Binaria, JMAyuda;
     public JMenuItem JINuevo, JIAbrir, JISalir, JIAcercaDe, JIAyuda;//Menu Logo Items (Opcional)   

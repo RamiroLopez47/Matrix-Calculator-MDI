@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import View.VentanaAcerca;
 import View.VentanaPrincipal;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,13 +18,12 @@ import java.awt.event.ActionListener;
  * @version 2
  */
 public class Controlador implements ActionListener {
-
+    
     VentanaPrincipal ventana;
-
+    VentanaAcerca acercaDe=new VentanaAcerca();
     public Controlador(VentanaPrincipal ventana) {
         this.ventana = ventana;
         ventana.setBounds(0, 0, 200, 300);
-
         agregarOyentes();
         analisis_decimal();
 
@@ -153,11 +154,10 @@ public class Controlador implements ActionListener {
     }
 
     private void acerca() {
-
+    acercaDe.setVisible(true);
     }
 
     private void ayuda() {
-
     }
 
 
