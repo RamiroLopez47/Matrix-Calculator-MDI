@@ -1,4 +1,6 @@
 # Matrix-Calculator-MDI
+¡ATENCION! Este es un nuevo repositorio ya que el que teniamos anteriormente no utilizizamos git correctamente (nos olvidamos de poner los
+comandos necesarios para que cada uno sea usuario global, por eso mismo aparecia que solamente el integrante Marcelo Cattani habia contribuido al proyecto ya que si habia utilzado el github correctamente, sin embargo nosotros haciamos commits solamente con el nombre de nuestra PC y no con el nombre de usuario de git, al surgir este problema rogamos que usted entienda la necesidad de crear uno nuevo atte Alumnos Programacion ).
 Trabajo práctico UTN FRM Metodología de la Investigación. 
 
 El proyecto consta de una calculadora que es capaz de realizar operaciones decimales (Suma, resta, etc) entre dos matrices. 
