@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame {
 
     private JMenuBar JMBmenuBar;//Menu bar
     private JMenu JMarchivo, JMmatrizDecimal, JMmatriz_Binaria, JMAyuda;
-    public JMenuItem JINuevo, JIAbrir, JISalir, JIAcercaDe, JIAyuda;//Menu Logo Items (Opcional)   
+    public JMenuItem JINuevo, JIAbrir, JISalir, JIAcercaDe, JIAyuda, JILlenarAleatorio;//Menu Logo Items (Opcional)   
     public JMenuItem JMI_Decimal_Op, JMI_Decimal_Ana;//matrizDecimalOperacion, matrizDecimalAnalisis    
     public JMenuItem JMI_Binaria_Op, JMI_Binaria_Ana;//matrizBinariaOperacion, matrizBinariaAnalisis
 
@@ -107,6 +107,7 @@ public class VentanaPrincipal extends JFrame {
         JMI_Binaria_Ana = new JMenuItem("Análisis");
         JIAcercaDe = new JMenuItem("Acerca de...");
         JIAyuda = new JMenuItem("Ayuda");
+        JILlenarAleatorio = new JMenuItem("Llenar Aleatorio");
 
         //Agrega cada elemtno a 'ARCHIVO'
         JMarchivo.add(JINuevo);
@@ -122,6 +123,7 @@ public class VentanaPrincipal extends JFrame {
         //Agrega Cada elemtno a 'Ayuda'
         JMAyuda.add(JIAyuda);
         JMAyuda.add(JIAcercaDe);
+        JMAyuda.add(JILlenarAleatorio);
     }
 
     /**
@@ -147,6 +149,7 @@ public class VentanaPrincipal extends JFrame {
         JMI_Binaria_Ana.setActionCommand("analisis_binario");
         JIAcercaDe.setActionCommand("acerca");
         JIAyuda.setActionCommand("ayuda");
+        JILlenarAleatorio.setActionCommand("llenarAleatorio");
     }
 
     /**
@@ -207,6 +210,7 @@ public class VentanaPrincipal extends JFrame {
 
         panelPrincipal.add(tabla1);
         panelPrincipal.add(tabla2);
+
 
     }
 

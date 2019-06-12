@@ -62,6 +62,9 @@ public class Controlador implements ActionListener {
             acerca();
         } else if (e.getActionCommand() == "ayuda") {
             ayuda();
+        } else if (e.getActionCommand() == "llenarAleatorio"){
+            ventana.tabla1.llenarAleatorio();
+            ventana.tabla2.llenarAleatorio();
         }
 
     }
@@ -79,6 +82,7 @@ public class Controlador implements ActionListener {
         ventana.JMI_Binaria_Op.addActionListener(this);
         ventana.JMI_Decimal_Ana.addActionListener(this);
         ventana.JMI_Decimal_Op.addActionListener(this);
+        ventana.JILlenarAleatorio.addActionListener(this);
     }
 
     private void nuevo() {
