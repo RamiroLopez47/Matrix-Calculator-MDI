@@ -9,18 +9,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  *
- * @author CATTANI, Marcelo Omar
- * https://github.com/marcelocattani
+ * @author CATTANI, Marcelo Omar https://github.com/marcelocattani
  * @version 2
- * 
+ *
  */
 public class VentanaPrincipal extends JFrame {
+
     private JMenuBar JMBmenuBar;//Menu bar
     private JMenu JMarchivo, JMmatrizDecimal, JMmatriz_Binaria, JMAyuda;
     public JMenuItem JINuevo, JIAbrir, JISalir, JIAcercaDe, JIAyuda;//Menu Logo Items (Opcional)   
@@ -30,8 +32,8 @@ public class VentanaPrincipal extends JFrame {
     public JPanel panelPrincipal;
 
     //Botones de Tamaño
-    public JButton btn_agrandarTabla1, btn_achicarTabla1, btn_ejecutar;
-    public JButton btn_obtener, btn_limpiar;
+    public Boton btn_agrandarTabla1, btn_achicarTabla1, btn_ejecutar;
+    public Boton btn_obtener, btn_limpiar;
 
     public Tabla tabla1;
     public Tabla tabla2;
@@ -43,6 +45,9 @@ public class VentanaPrincipal extends JFrame {
     //Indicador de Estado Actual
     public JLabel indicadoDeEstado;
 
+    //MAPA DE BOTONES
+    HashMap<String, Boton> listaBotones = new HashMap<>();
+
     public VentanaPrincipal() {
         super("MATRIX CALCULATOR");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Abrir ventana maximizada
@@ -52,7 +57,7 @@ public class VentanaPrincipal extends JFrame {
         agregarPanel();
         crearBarraDeMenu();
         colocarIndicador();
-        colocarBotones();
+        generarBotones();
         colocarTablas();
 
         this.cambiarEstado(this.ANALISIS_DECIMAL);
@@ -147,33 +152,7 @@ public class VentanaPrincipal extends JFrame {
     /**
      * Coloca cada uno de los botones de la Ventana
      */
-    private void colocarBotones() {
-        Dimension tamañoEstandar = new Dimension(100, 45);
 
-        btn_achicarTabla1 = new JButton("-"); //CAMBIAR TEXTO POR ICONOS
-        btn_agrandarTabla1 = new JButton("+");
-        btn_ejecutar = new JButton("Aleatorio");
-        btn_obtener = new JButton("Obtener");
-        btn_limpiar = new JButton("Limpiar");
-
-        btn_achicarTabla1.setSize(45, 45);
-        btn_agrandarTabla1.setSize(45, 45);
-        btn_ejecutar.setSize(tamañoEstandar);
-        btn_obtener.setSize(tamañoEstandar);
-        btn_limpiar.setSize(tamañoEstandar);
-
-        btn_achicarTabla1.setLocation(50, 30);
-        btn_agrandarTabla1.setLocation(100, 30);
-        btn_ejecutar.setLocation(165, 30);
-        btn_obtener.setLocation(280, 30);
-        btn_limpiar.setLocation(400, 30);
-
-        panelPrincipal.add(btn_achicarTabla1);
-        panelPrincipal.add(btn_agrandarTabla1);
-        panelPrincipal.add(btn_ejecutar);
-        panelPrincipal.add(btn_obtener);
-        panelPrincipal.add(btn_limpiar);
-    }
 
     /**
      * Coloca un indicador superior derecho que lleva el nombre del estado
@@ -184,7 +163,7 @@ public class VentanaPrincipal extends JFrame {
         indicadoDeEstado.setFont(new Font("Arial", Font.BOLD, 30));
         indicadoDeEstado.setForeground(Color.red);
         indicadoDeEstado.setSize(350, 30);
-        indicadoDeEstado.setLocation(550, 40);
+        indicadoDeEstado.setLocation(800, 40);
         panelPrincipal.add(indicadoDeEstado);
     }
 
@@ -216,6 +195,7 @@ public class VentanaPrincipal extends JFrame {
                 this.indicadoDeEstado.setText("ANÁLISIS DECIMAL");
                 break;
         }
+        evaluarVisibilidadesBotones();
     }
 
     /**
@@ -228,6 +208,65 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.add(tabla1);
         panelPrincipal.add(tabla2);
 
+    }
+
+    private void generarBotones() {
+        listaBotones.put("determinante", new Boton("Determinante", Boton.ESTANDAR, ANALISIS_DECIMAL));
+        listaBotones.put("inversa", new Boton("Inversa", Boton.ESTANDAR, ANALISIS_DECIMAL));
+        listaBotones.put("traspuesta_decimal", new Boton("Traspuesta", Boton.ESTANDAR, ANALISIS_DECIMAL));
+        listaBotones.put("rango", new Boton("Rango", Boton.ESTANDAR, ANALISIS_DECIMAL));
+        listaBotones.put("multiplicaf", new Boton("Multiplicar", Boton.ESTANDAR, OPERACION_DECIMAL));
+        listaBotones.put("multiplicam", new Boton("Multiplicar", Boton.ESTANDAR, OPERACION_DECIMAL));
+        listaBotones.put("elevar", new Boton("Elevar", Boton.ESTANDAR, OPERACION_DECIMAL));
+        listaBotones.put("sumar", new Boton("Sumar", Boton.ESTANDAR, OPERACION_DECIMAL));
+        listaBotones.put("restar", new Boton("Restar", Boton.ESTANDAR, OPERACION_DECIMAL));
+        listaBotones.put("interseccion", new Boton("Determinante", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("diferencia", new Boton("Diferencia", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("complemento", new Boton("Complemento", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("traspuesta_binaria", new Boton("Traspuesta", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("union", new Boton("Union", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("composicion", new Boton("Composicion", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("analizar", new Boton("Analizar", Boton.ESTANDAR, ANALISIS_BINARIO));
+
+        for (Map.Entry<String, Boton> b : listaBotones.entrySet()) {
+            panelPrincipal.add(b.getValue());
+        }
+
+        //GRRUPO 1
+        listaBotones.get("determinante").setLocation(0, 30);
+        listaBotones.get("inversa").setLocation(120, 30);
+        listaBotones.get("traspuesta_decimal").setLocation(240, 30);
+        listaBotones.get("rango").setLocation(360, 30);
+
+        //GRUPO 2
+        listaBotones.get("multiplicaf").setLocation(0, 30);
+        listaBotones.get("multiplicam").setLocation(120, 30);
+        listaBotones.get("elevar").setLocation(240, 30);
+        listaBotones.get("sumar").setLocation(360, 30);
+        listaBotones.get("restar").setLocation(480, 30);
+
+        //GRUPO 3
+        listaBotones.get("interseccion").setLocation(0, 30);
+        listaBotones.get("diferencia").setLocation(120, 30);
+        listaBotones.get("complemento").setLocation(240, 30);
+        listaBotones.get("traspuesta_binaria").setLocation(360, 30);
+        listaBotones.get("union").setLocation(480, 30);
+        listaBotones.get("composicion").setLocation(600, 30);
+
+        //GRUPO 4 
+        listaBotones.get("analizar").setLocation(50, 30);
+        evaluarVisibilidadesBotones();
+
+    }
+
+    private void evaluarVisibilidadesBotones() {
+        for (Map.Entry<String, Boton> b : listaBotones.entrySet()) {
+            if (b.getValue().getGrupo() != VentanaPrincipal.estado) {
+                b.getValue().setVisible(false);
+            } else {
+                b.getValue().setVisible(true);
+            }
+        }
     }
 
 }

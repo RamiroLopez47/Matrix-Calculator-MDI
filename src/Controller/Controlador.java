@@ -79,53 +79,6 @@ public class Controlador implements ActionListener {
         ventana.JMI_Binaria_Op.addActionListener(this);
         ventana.JMI_Decimal_Ana.addActionListener(this);
         ventana.JMI_Decimal_Op.addActionListener(this);
-
-        ActionListener actionDisminuirTamaño = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventana.tabla1.disminuirTamaño();
-                ventana.tabla2.disminuirTamaño();
-            }
-        };
-
-        ventana.btn_achicarTabla1.addActionListener(actionDisminuirTamaño);
-
-        ActionListener actionAumentarTamaño = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventana.tabla1.aumentarTamaño();
-                ventana.tabla2.aumentarTamaño();
-            }
-        };
-
-        ventana.btn_agrandarTabla1.addActionListener(actionAumentarTamaño);
-        ActionListener accionEjecutar = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventana.tabla1.llenarAleatorio();
-                ventana.tabla2.llenarAleatorio();
-            }
-        };
-
-        ventana.btn_ejecutar.addActionListener(accionEjecutar);
-        ActionListener actionObtener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventana.tabla1.mostrarMatriz();
-                ventana.tabla2.mostrarMatriz();
-            }
-        };
-
-        ventana.btn_obtener.addActionListener(actionObtener);
-        ActionListener actionLimpiar = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ventana.tabla1.limpiarTabla();
-                ventana.tabla2.limpiarTabla();
-            }
-        };
-
-        ventana.btn_limpiar.addActionListener(actionLimpiar);
     }
 
     private void nuevo() {
@@ -154,7 +107,7 @@ public class Controlador implements ActionListener {
     }
 
     private void acerca() {
-    acercaDe.setVisible(true);
+        acercaDe.setVisible(true);
     }
 
     private void ayuda() {

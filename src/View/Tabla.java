@@ -47,7 +47,7 @@ public class Tabla extends JTable {
      * @param localizacion
      */
     public Tabla(Point localizacion) {
-        this(3, localizacion);
+        this(8, localizacion);
     }
 
     /**
