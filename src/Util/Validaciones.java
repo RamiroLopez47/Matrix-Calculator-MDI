@@ -19,7 +19,7 @@ public interface Validaciones {
 
     public boolean sonCuadradasI(int[][] matriz, int[][] matriz2);
 
-    public boolean exponenteEntero(float[][] matriz, int exponente);
+    public boolean exponentePositivo(float[][] matriz, int exponente);
 
     public boolean columnaIgualFila(float[][] matriz, float[][] matriz2);
 
