@@ -6,21 +6,22 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
+import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.*;
 /**
  *
  * @author Castillo Alexander Marcelo
- * @version 1
+ * @version 2
  */
 public class VentanaAcerca extends JFrame {
     JPanel panelPrincipal=new JPanel();
     JLabel titulo=new JLabel();
     JLabel version=new JLabel();
     JLabel informacion=new JLabel();
+    ImageIcon logopng=new ImageIcon("icono.png");
+    JLabel imagenlogo=new JLabel(logopng);
     public VentanaAcerca(){
         setTitle("Acerca de MATRIX CALCULATOR");
         iniciarComponentes();
@@ -35,6 +36,7 @@ public class VentanaAcerca extends JFrame {
         panelPrincipal.add(titulo);
         panelPrincipal.add(version);
         panelPrincipal.add(informacion);
+        panelPrincipal.add(imagenlogo);
     }
     public void texto(){
         titulo.setText("Matrix Calculator");
@@ -51,6 +53,8 @@ public class VentanaAcerca extends JFrame {
         informacion.setBounds(250,250,800, 20);
         informacion.setOpaque(true);
         informacion.setBackground(Color.white);
+        imagenlogo.setBounds(10,20,120,120);
+        imagenlogo.setIcon(new ImageIcon(logopng.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH)));//Achicar imagen para que entre en la etiqueta
     }
  }
     
