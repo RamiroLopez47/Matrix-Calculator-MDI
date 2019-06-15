@@ -7,7 +7,6 @@ package Controller;
 
 import View.VentanaAcerca;
 import View.VentanaPrincipal;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,8 +43,8 @@ public class Controlador implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "nuevo") {
-            nuevo();
+        if (e.getActionCommand() == "guardar") {
+            guardar();
         } else if (e.getActionCommand() == "abrir") {
             abrir();
         } else if (e.getActionCommand() == "salir") {
@@ -76,7 +75,7 @@ public class Controlador implements ActionListener {
         ventana.JIAbrir.addActionListener(this);
         ventana.JIAcercaDe.addActionListener(this);
         ventana.JIAyuda.addActionListener(this);
-        ventana.JINuevo.addActionListener(this);
+        ventana.JIGuardar.addActionListener(this);
         ventana.JISalir.addActionListener(this);
         ventana.JMI_Binaria_Ana.addActionListener(this);
         ventana.JMI_Binaria_Op.addActionListener(this);
@@ -85,7 +84,7 @@ public class Controlador implements ActionListener {
         ventana.JILlenarAleatorio.addActionListener(this);
     }
 
-    private void nuevo() {
+    private void guardar() {
 
     }
 
@@ -116,6 +115,5 @@ public class Controlador implements ActionListener {
 
     private void ayuda() {
     }
-
-
+    
 }

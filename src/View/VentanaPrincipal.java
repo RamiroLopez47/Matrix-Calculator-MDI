@@ -6,7 +6,6 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class VentanaPrincipal extends JFrame {
 
     private JMenuBar JMBmenuBar;//Menu bar
     private JMenu JMarchivo, JMmatrizDecimal, JMmatriz_Binaria, JMAyuda;
-    public JMenuItem JINuevo, JIAbrir, JISalir, JIAcercaDe, JIAyuda, JILlenarAleatorio;//Menu Logo Items (Opcional)   
+    public JMenuItem JIGuardar, JIAbrir, JISalir, JIAcercaDe, JIAyuda, JILlenarAleatorio;//Menu Logo Items (Opcional)   
     public JMenuItem JMI_Decimal_Op, JMI_Decimal_Ana;//matrizDecimalOperacion, matrizDecimalAnalisis    
     public JMenuItem JMI_Binaria_Op, JMI_Binaria_Ana;//matrizBinariaOperacion, matrizBinariaAnalisis
 
@@ -98,7 +97,7 @@ public class VentanaPrincipal extends JFrame {
      */
     private void agregarMenusItems() {
         //CREAR TODOS LOS ITEMS
-        JINuevo = new JMenuItem("Nuevo");
+        JIGuardar = new JMenuItem("Nuevo");
         JIAbrir = new JMenuItem("Abrir...");
         JISalir = new JMenuItem("Salir");
         JMI_Decimal_Op = new JMenuItem("Operaciones");
@@ -110,7 +109,7 @@ public class VentanaPrincipal extends JFrame {
         JILlenarAleatorio = new JMenuItem("Llenar Aleatorio");
 
         //Agrega cada elemtno a 'ARCHIVO'
-        JMarchivo.add(JINuevo);
+        JMarchivo.add(JIGuardar);
         JMarchivo.add(JIAbrir);
         JMarchivo.addSeparator();
         JMarchivo.add(JISalir);
@@ -140,7 +139,7 @@ public class VentanaPrincipal extends JFrame {
      * Agrega las referencias de ActionCommand a los JMenuItems
      */
     private void agregarActionCommand() {
-        JINuevo.setActionCommand("nuevo");
+        JIGuardar.setActionCommand("guardar");
         JIAbrir.setActionCommand("abrir");
         JISalir.setActionCommand("salir");
         JMI_Decimal_Op.setActionCommand("operacion_decimal");

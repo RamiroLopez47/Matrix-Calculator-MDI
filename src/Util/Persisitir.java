@@ -11,10 +11,10 @@ import java.io.Serializable;
  *
  * @author francomorales
  */
-public class ObjetoPersistir implements Serializable{
+public class Persisitir implements Serializable{
     /**
      * Clases sujetas a modificaciones futuras
      */
-    public static void guardarObjeto(){ }
-    public float abrirObjeto(){ return 0;}
+    public static void guardar() { }
+    public static  void abrir() { }
 }
