@@ -201,7 +201,8 @@ public class Tabla extends JTable {
     }
 
     /**
-     * Llena la tabla de datos numericos aleatorios,
+     * Llena la tabla de datos numericos aleatorios, en formato ##.## cuando es
+     * float y # con valores 0 y 1, para binarias
      *
      */
     public void llenarAleatorio() {
@@ -328,6 +329,42 @@ public class Tabla extends JTable {
             valorPorDefecto = "0.0";
         } else {
             valorPorDefecto = "0";
+        }
+    }
+
+    public void llenar(float[][] matriz) {
+        //limpiamos la tabla para preparar el llenado
+        this.limpiarTabla();
+        
+        //cambia el tamaño de la tabla al tamaño maximo requerido por la matriz
+        if (matriz.length > matriz[0].length) {
+            this.cambiarDimensiones(matriz.length);
+        } else {
+            this.cambiarDimensiones(matriz[0].length);
+        }
+        //asigna los valores
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                this.modelo.setValueAt(matriz[i][j], i, j);
+            }
+        }
+    }
+
+    public void llenar(int[][] matriz) {
+        //limpiamos la tabla para preparar el llenao
+        this.limpiarTabla();
+        
+        //cambia el tamaño de la tabla al tamaño maximo requerido por la matriz
+        if (matriz.length > matriz[0].length) {
+            this.cambiarDimensiones(matriz.length);
+        } else {
+            this.cambiarDimensiones(matriz[0].length);
+        }
+        //asigna los valores
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                this.modelo.setValueAt(matriz[i][j], i, j);
+            }
         }
     }
 
