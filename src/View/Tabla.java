@@ -18,15 +18,15 @@ import javax.swing.table.TableColumnModel;
  * Esta clase contiene todos los metodos necesarios para obtener datos de las
  * tablas y modificar propiedades y valores de ser necesario
  *
- * @author CATTANI, Marcelo Omar.
- * Todos los codigos en esta clase son de mi autoria
- * https://github.com/marcelocattani
+ * @author CATTANI, Marcelo Omar. Todos los codigos en esta clase son de mi
+ * autoria https://github.com/marcelocattani
  * @version 2
  */
 public class Tabla extends JTable {
 
     public DefaultTableModel modelo;
     private TableColumnModel modeloColumna;
+    private String valorPorDefecto;
 
     /**
      * Construye una tabla con el tamaño especificado en una posicion
@@ -54,19 +54,15 @@ public class Tabla extends JTable {
      * Muestra la matriz por consola, dedicada a debug
      */
     public void mostrarMatriz() {
-        String dato, valorPorDefecto;
+        String dato;
+        actualizarValorPorDefecto();
         float aux1Float;
-        
-        if (VentanaPrincipal.estado == VentanaPrincipal.OPERACION_DECIMAL || VentanaPrincipal.estado == VentanaPrincipal.ANALISIS_DECIMAL) {
-            valorPorDefecto = "0.0";
-        } else {
-            valorPorDefecto = "0";
-        }
+
         try {
             for (int i = 0; i < this.getAlto(); i++) {
 
                 for (int j = 0; j < this.getAncho(); j++) {
-                    
+
                     dato = (String) modelo.getValueAt(i, j);
                     if (dato == null || dato.isEmpty()) { //Si la celda esta vacia el valor se considera 0
                         aux1Float = 0.0f;
@@ -74,7 +70,7 @@ public class Tabla extends JTable {
                     } else {
                         aux1Float = Float.parseFloat(dato);
                     }
-                    
+
                     System.out.print(aux1Float + "\t");
                 }
                 System.out.print("|\n");
@@ -95,29 +91,35 @@ public class Tabla extends JTable {
      * @return Matriz flotante
      */
     public float[][] getMatrizDecimal() {
-        int ultimaColumna, ultimaFila;
-        float[][] arreglo = new float[modelo.getColumnCount()][modelo.getRowCount()];
-        String dato;
-        float aux1Float;
+        actualizarValorPorDefecto();
+        String stringAuxiliar; //almacenamiento temporal de dato sin tratar
+        float floatAuxiliar;//almacenamiento temporal de dato parsedo
+        float[][] retorno = new float[getAncho()][getAlto()]; //Define el tamaño a partir del ultimo dato
 
         try {
-            for (int i = 0; i < modelo.getColumnCount(); i++) {
+            for (int i = 0; i < this.getAlto(); i++) {
+                for (int j = 0; j < getAncho(); j++) {
 
-                for (int j = 0; j < modelo.getRowCount(); j++) {
-                    dato = (String) modelo.getValueAt(i, j);
-                    if (dato == null) { //Si la celda esta vacia el valor se considera 0
-                        aux1Float = 0.0f;
+                    //Obtenemos el valor en la celda i, j
+                    stringAuxiliar = (String) modelo.getValueAt(i, j);
+
+                    //validamos que la celda no este vacia y que no sea null
+                    if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
+                        floatAuxiliar = 0.0f;
+                        //llenamos la celda con el String Auxiliar
+                        modelo.setValueAt(valorPorDefecto, i, j);
                     } else {
-                        aux1Float = Float.parseFloat(dato);
+                        floatAuxiliar = Float.parseFloat(stringAuxiliar);
                     }
-                    arreglo[i][j] = aux1Float;
+
+                    retorno[i][j] = floatAuxiliar; // asignamos el valor a una matriz de retorno
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("ERROR DE TIPO" + e);
+            System.err.println("ERROR DE TIPO" + e.getMessage());
         }
-        return arreglo;
+        return retorno;
     }
 
     /**
@@ -126,28 +128,35 @@ public class Tabla extends JTable {
      * @return Matriz entera
      */
     public int[][] getMatrizBinaria() {
-        int[][] arreglo = new int[this.getAlto()][this.getAncho()];
-        String dato;
-        int auxInt;
+        actualizarValorPorDefecto();
+        String stringAuxiliar; //almacenamiento temporal de dato sin tratar
+        int intAuxiliar;//almacenamiento temporal de dato parsedo
+        int[][] retorno = new int[getAncho()][getAlto()]; //Define el tamaño a partir del ultimo dato
 
         try {
             for (int i = 0; i < this.getAlto(); i++) {
+                for (int j = 0; j < getAncho(); j++) {
 
-                for (int j = 0; j < this.getAncho(); j++) {
-                    dato = (String) modelo.getValueAt(i, j);
-                    if (dato == null) {
-                        auxInt = 0;
+                    //Obtenemos el valor en la celda i, j
+                    stringAuxiliar = (String) modelo.getValueAt(i, j);
+
+                    //validamos que la celda no este vacia y que no sea null
+                    if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
+                        intAuxiliar = 0;
+                        //llenamos la celda con el String Auxiliar
+                        modelo.setValueAt(valorPorDefecto, i, j);
                     } else {
-                        auxInt = Integer.parseInt(dato);
+                        intAuxiliar = Integer.parseInt(stringAuxiliar);
                     }
-                    arreglo[i][j] = auxInt;
+
+                    retorno[i][j] = intAuxiliar; // asignamos el valor a una matriz de retorno
                 }
             }
 
         } catch (Exception e) {
-            System.err.println("ERROR DE TIPO" + e);
+            System.err.println("ERROR DE TIPO" + e.getMessage());
         }
-        return arreglo;
+        return retorno;
     }
 
     /**
@@ -223,6 +232,7 @@ public class Tabla extends JTable {
         }
 
     }
+
     /**
      * Borra los datos de la tabla remplazando el valor de cada celda por null
      */
@@ -233,10 +243,12 @@ public class Tabla extends JTable {
             }
         }
     }
-/**
- * evalua si el modelo se encuentr totalmente vacio
- * @return true si el modelo no contiene datos
- */
+
+    /**
+     * evalua si el modelo se encuentr totalmente vacio
+     *
+     * @return true si el modelo no contiene datos
+     */
     private boolean isEmpty() {
         for (int i = 0; i < modelo.getColumnCount(); i++) {
             for (int j = 0; j < modelo.getRowCount(); j++) {
@@ -247,10 +259,12 @@ public class Tabla extends JTable {
         }
         return true;
     }
-/**
- * evalua si la tabla contiene al menos un valor
- * @return true si se encuentra almenos un valor
- */
+
+    /**
+     * evalua si la tabla contiene al menos un valor
+     *
+     * @return true si se encuentra almenos un valor
+     */
     private boolean isFull() {
         for (int i = 0; i < modelo.getColumnCount(); i++) {
             for (int j = 0; j < modelo.getRowCount(); j++) {
@@ -261,44 +275,60 @@ public class Tabla extends JTable {
         }
         return true;
     }
-/**
- * obtiene la posicion de la ultima columna donde se encuentra un valor hacia la 
- * derecha
- * @return int ancho columna 
- */
+
+    /**
+     * obtiene la posicion de la ultima columna donde se encuentra un valor
+     * hacia la derecha
+     *
+     * @return int ancho columna
+     */
     private int getAncho() {
-        int anchoMaximo=0;
+        int anchoMaximo = 0;
         String dato;
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            for (int j = 0; j < modelo.getColumnCount(); j++) { 
+            for (int j = 0; j < modelo.getColumnCount(); j++) {
                 dato = (String) modelo.getValueAt(i, j);
                 if (dato != null && !dato.isEmpty()) {
                     if (anchoMaximo < j) {
-                       anchoMaximo = j;
+                        anchoMaximo = j;
                     }
                 }
             }
         }
-        return anchoMaximo+1;
+        return anchoMaximo + 1;
     }
-/**
- * obtiene la posicion de la ultima fila donde se encuentra un valor hacia abajo
- * @return int alto columna 
- */
+
+    /**
+     * obtiene la posicion de la ultima fila donde se encuentra un valor hacia
+     * abajo
+     *
+     * @return int alto columna
+     */
     private int getAlto() {
-        int altoMaximo=0;
+        int altoMaximo = 0;
         String dato;
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            for (int j = 0; j < modelo.getColumnCount(); j++) { 
+            for (int j = 0; j < modelo.getColumnCount(); j++) {
                 dato = (String) modelo.getValueAt(i, j);
                 if (dato != null && !dato.isEmpty()) {
                     if (altoMaximo < i) {
-                       altoMaximo = i;
+                        altoMaximo = i;
                     }
                 }
             }
         }
-        return altoMaximo+1;
+        return altoMaximo + 1;
+    }
+
+    /**
+     * Determinar el valor String que sera usado par llenar la tabla
+     */
+    private void actualizarValorPorDefecto() {
+        if (VentanaPrincipal.estado == VentanaPrincipal.OPERACION_DECIMAL || VentanaPrincipal.estado == VentanaPrincipal.ANALISIS_DECIMAL) {
+            valorPorDefecto = "0.0";
+        } else {
+            valorPorDefecto = "0";
+        }
     }
 
 }
