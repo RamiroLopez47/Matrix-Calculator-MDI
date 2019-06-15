@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class Validations implements Validaciones {
 
     @Override
-    public boolean esCuadradaF(float[][] matriz) {
+    public boolean esCuadrada(float[][] matriz) {
         boolean flag = false;
         if (matriz.length == matriz[0].length) {
             flag = true;
@@ -21,7 +21,7 @@ public class Validations implements Validaciones {
     }
 
     @Override
-    public boolean sonCuadradasF(float[][] matriz, float[][] matriz2) {
+    public boolean esCuadrada(float[][] matriz, float[][] matriz2) {
         boolean flag = false;
 
         if ((matriz.length == matriz[0].length) && (matriz2.length == matriz2[0].length)) {
@@ -35,7 +35,7 @@ public class Validations implements Validaciones {
     }
 
     @Override
-    public boolean esCuadradaI(int[][] matriz) {
+    public boolean esCuadrada(int[][] matriz) {
         boolean flag = false;
 
         if (matriz.length == matriz[0].length) {
@@ -48,7 +48,7 @@ public class Validations implements Validaciones {
     }
 
     @Override
-    public boolean sonCuadradasI(int[][] matriz, int[][] matriz2) {
+    public boolean esCuadrada(int[][] matriz, int[][] matriz2) {
         boolean flag = false;
         if ((matriz.length == matriz[0].length) && (matriz2.length == matriz2[0].length)) {
             flag = true;
@@ -60,7 +60,7 @@ public class Validations implements Validaciones {
     }
 
     @Override
-    public boolean exponentePositivo(float[][] matriz, int exponente) {
+    public boolean potencia(float[][] matriz, int exponente) {
         boolean flag = false;
         if (exponente > 0) {
             flag = true;

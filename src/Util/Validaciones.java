@@ -11,15 +11,15 @@ package Util;
  */
 public interface Validaciones {
 
-    public boolean esCuadradaF(float[][] matriz);
+    public boolean esCuadrada(float[][] matriz);
 
-    public boolean sonCuadradasF(float[][] matriz, float[][] matriz2);
+    public boolean esCuadrada(float[][] matriz, float[][] matriz2);
 
-    public boolean esCuadradaI(int[][] matriz);
+    public boolean esCuadrada(int[][] matriz);
 
-    public boolean sonCuadradasI(int[][] matriz, int[][] matriz2);
+    public boolean esCuadrada(int[][] matriz, int[][] matriz2);
 
-    public boolean exponentePositivo(float[][] matriz, int exponente);
+    public boolean potencia(float[][] matriz, int exponente);
 
     public boolean columnaIgualFila(float[][] matriz, float[][] matriz2);
 
