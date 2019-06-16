@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Util.Datos;
+import Util.Persistir;
 import View.VentanaAcerca;
 import View.VentanaPrincipal;
 import java.awt.event.ActionEvent;
@@ -20,12 +22,14 @@ public class Controlador implements ActionListener {
     
     VentanaPrincipal ventana;
     VentanaAcerca acercaDe=new VentanaAcerca();
+    //Datos a guardar o abir
+    public static Datos dato;
+    
     public Controlador(VentanaPrincipal ventana) {
         this.ventana = ventana;
         ventana.setBounds(0, 0, 200, 300);
         agregarOyentes();
         analisis_decimal();
-
     }
 
     /**
@@ -65,7 +69,6 @@ public class Controlador implements ActionListener {
             ventana.tabla1.llenarAleatorio();
             ventana.tabla2.llenarAleatorio();
         }
-
     }
 
     /**
@@ -83,18 +86,84 @@ public class Controlador implements ActionListener {
         ventana.JMI_Decimal_Op.addActionListener(this);
         ventana.JILlenarAleatorio.addActionListener(this);
     }
-
-    private void guardar() {
-
+    
+    /**
+     * Método que guarda objetos del tipo 'Datos'
+     */
+    public void guardar() {
+        int estAux = VentanaPrincipal.estado;
+        System.out.println("Controlador : Ventana Principal : Estado -> "+ estAux);
+        switch (estAux) {
+            case 0:
+                dato = new Datos (estAux,ventana.tabla1.getMatrizDecimal());
+                Persistir.guardar(dato);
+                System.out.println("Controlador : Guardar : Exito");
+                break;
+            case 1:
+                dato = new Datos(estAux, ventana.tabla1.getMatrizBinaria());
+                Persistir.guardar(dato);
+                System.out.println("Controlador : Guardar : Exito");
+                break;
+            case 2:
+                dato = new Datos(estAux, ventana.tabla1.getMatrizDecimal(),ventana.tabla2.getMatrizDecimal());
+                Persistir.guardar(dato);
+                System.out.println("Controlador : Guardar : Exito");
+                break;
+            case 3:
+                dato = new Datos(estAux, ventana.tabla1.getMatrizBinaria(),ventana.tabla2.getMatrizBinaria());
+                Persistir.guardar(dato);
+                System.out.println("Controlador : Guardar : Exito");
+                break;
+            default:
+                System.err.println("¡ Error !");
+                System.out.println("Controlador : Guardar : Error");
+        }
     }
-
-    private void abrir() {
-
+    
+    /**
+     * Método que recupera objetos del tipo 'Datos' guardados previamente
+     */
+    public void abrir() {
+        //se agrega un tryCatch por posible error
+        try {
+            dato = (Datos) Persistir.abrir(); 
+            int estAux = dato.getESTADO();
+            System.out.println("Controlador : Ventana Principal : Estado -> "+ estAux);
+            switch (estAux) {
+                case 0:
+                    ventana.cambiarEstado(estAux);
+                    ventana.tabla1.llenar(dato.getMatrizUnoFloat());
+                    System.out.println("Controlador : Abrir : Exito");
+                    break;
+                case 1:
+                    ventana.cambiarEstado(estAux);
+                    ventana.tabla1.llenar(dato.getMatrizUnoInt());
+                    System.out.println("Controlador : Abrir : Exito");
+                    break;
+                case 2:
+                    ventana.cambiarEstado(estAux);
+                    ventana.tabla1.llenar(dato.getMatrizUnoFloat());
+                    ventana.tabla2.llenar(dato.getMatrizDosFloat());
+                    System.out.println("Controlador : Abrir : Exito");
+                    break;
+                case 3:
+                    ventana.cambiarEstado(estAux);
+                    ventana.tabla1.llenar(dato.getMatrizUnoInt());
+                    ventana.tabla2.llenar(dato.getMatrizDosInt());
+                    System.out.println("Controlador : Abrir : Exito");
+                    break;
+                default:
+                    System.err.println("¡ Error !");
+                    System.out.println("Controlador : Abrir : Error");
+            }
+        } catch (Exception e){
+            e.getMessage();
+            System.err.println("¡ Error inesperado a la hora de abrir un archivo .mc");
+        }
     }
 
     private void operacion_decimal() {
         ventana.cambiarEstado(VentanaPrincipal.OPERACION_DECIMAL);
-
     }
 
     private void analisis_decimal() {
@@ -113,7 +182,5 @@ public class Controlador implements ActionListener {
         acercaDe.setVisible(true);
     }
 
-    private void ayuda() {
-    }
-    
+    private void ayuda() { }
 }

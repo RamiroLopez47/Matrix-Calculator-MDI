@@ -97,8 +97,8 @@ public class VentanaPrincipal extends JFrame {
      */
     private void agregarMenusItems() {
         //CREAR TODOS LOS ITEMS
-        JIGuardar = new JMenuItem("Nuevo");
-        JIAbrir = new JMenuItem("Abrir...");
+        JIGuardar = new JMenuItem("Guardar");
+        JIAbrir = new JMenuItem("Abrir");
         JISalir = new JMenuItem("Salir");
         JMI_Decimal_Op = new JMenuItem("Operaciones");
         JMI_Decimal_Ana = new JMenuItem("Análisis");

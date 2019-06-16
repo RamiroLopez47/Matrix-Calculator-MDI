@@ -5,11 +5,13 @@
  */
 package Util;
 
+import java.io.Serializable;
+
 /**
  *
  * @author francomorales
  */
-public class Datos {
+public class Datos implements Serializable{
     //Atributos
     //Indica el ESTADO de la VentanaPrincipal para que esta sea modificada
     private final int ESTADO; 
