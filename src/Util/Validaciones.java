@@ -26,6 +26,8 @@ public interface Validaciones {
     public boolean mismoTamanio(float[][] matriz, float[][] matriz2);
 
     public boolean mismoTamanio(int[][] matriz, int[][] matriz2);
-    
 
+    public boolean esBinaria (int[][] matriz);
+
+    public boolean esBinaria(int[][] matriz, int[][] matriz2);
 }

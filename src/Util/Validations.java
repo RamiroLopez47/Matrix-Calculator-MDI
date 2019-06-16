@@ -112,4 +112,34 @@ public class Validations implements Validaciones {
 
     }
 
+    @Override
+    public boolean esBinaria(int[][] matriz) {
+        boolean flag = false;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if ((matriz[i][j] == 0) || (matriz[i][j] == 1)) {
+                    flag = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "La matriz no es binaria.");
+                }
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean esBinaria(int[][] matriz, int[][] matriz2) {
+        boolean flag = false;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if (((matriz[i][j] == 0) || (matriz[i][j] == 1))&&((matriz2[i][j] == 0) || (matriz2[i][j] == 1))) {
+                    flag = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "La matriz no es binaria.");
+                }
+            }
+        }
+        return flag;
+    }
+
 }
