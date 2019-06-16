@@ -60,7 +60,7 @@ public class AnalisisBinaria {
     }
 
     /**
-     * Funcion Antisimétrica: Analisa si una matriz binaria es o no antisimétrica
+     * Funcion Antisimétrica: Analiza si una matriz binaria es o no antisimétrica
      * 
      * @param arreglo entero
      * @return boolean
