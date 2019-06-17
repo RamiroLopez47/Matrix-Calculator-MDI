@@ -214,6 +214,8 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void generarBotones() {
+        int desplazamientoX = 50;
+        
         listaBotones.put("determinante", new Boton("Determinante", Boton.ESTANDAR, ANALISIS_DECIMAL));
         listaBotones.put("inversa", new Boton("Inversa", Boton.ESTANDAR, ANALISIS_DECIMAL));
         listaBotones.put("traspuesta_decimal", new Boton("Traspuesta", Boton.ESTANDAR, ANALISIS_DECIMAL));
@@ -236,28 +238,28 @@ public class VentanaPrincipal extends JFrame {
         }
 
         //GRRUPO 1
-        listaBotones.get("determinante").setLocation(0, 30);
-        listaBotones.get("inversa").setLocation(120, 30);
-        listaBotones.get("traspuesta_decimal").setLocation(240, 30);
-        listaBotones.get("rango").setLocation(360, 30);
+        listaBotones.get("determinante").setLocation(0 + desplazamientoX, 30);
+        listaBotones.get("inversa").setLocation(120 + desplazamientoX, 30);
+        listaBotones.get("traspuesta_decimal").setLocation(240 + desplazamientoX, 30);
+        listaBotones.get("rango").setLocation(360 + desplazamientoX, 30);
 
         //GRUPO 2
-        listaBotones.get("multiplicaf").setLocation(0, 30);
-        listaBotones.get("multiplicam").setLocation(120, 30);
-        listaBotones.get("elevar").setLocation(240, 30);
-        listaBotones.get("sumar").setLocation(360, 30);
-        listaBotones.get("restar").setLocation(480, 30);
+        listaBotones.get("multiplicaf").setLocation(0 + desplazamientoX, 30);
+        listaBotones.get("multiplicam").setLocation(120 + desplazamientoX, 30);
+        listaBotones.get("elevar").setLocation(240 + desplazamientoX, 30);
+        listaBotones.get("sumar").setLocation(360 + desplazamientoX, 30);
+        listaBotones.get("restar").setLocation(480 + desplazamientoX, 30);
 
         //GRUPO 3
-        listaBotones.get("interseccion").setLocation(0, 30);
-        listaBotones.get("diferencia").setLocation(120, 30);
-        listaBotones.get("complemento").setLocation(240, 30);
-        listaBotones.get("traspuesta_binaria").setLocation(360, 30);
-        listaBotones.get("union").setLocation(480, 30);
-        listaBotones.get("composicion").setLocation(600, 30);
+        listaBotones.get("interseccion").setLocation(0 + desplazamientoX, 30);
+        listaBotones.get("diferencia").setLocation(120 + desplazamientoX, 30);
+        listaBotones.get("complemento").setLocation(240 + desplazamientoX, 30);
+        listaBotones.get("traspuesta_binaria").setLocation(360 + desplazamientoX, 30);
+        listaBotones.get("union").setLocation(480 + desplazamientoX, 30);
+        listaBotones.get("composicion").setLocation(600 + desplazamientoX, 30);
 
         //GRUPO 4 
-        listaBotones.get("analizar").setLocation(50, 30);
+        listaBotones.get("analizar").setLocation(50 + desplazamientoX, 30);
         evaluarVisibilidadesBotones();
 
     }
