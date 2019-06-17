@@ -3,7 +3,6 @@
  * 
  */
 package View;
-
 import java.awt.Point;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -38,7 +37,7 @@ public class Tabla extends JTable {
         super(tamaño, tamaño);
         modelo = (DefaultTableModel) this.getModel();
         cambiarDimensiones(tamaño);
-        this.setLocation(localizacion);
+        this.setLocation(localizacion);        
     }
 
     /**
@@ -101,7 +100,7 @@ public class Tabla extends JTable {
                 for (int j = 0; j < getAncho(); j++) {
 
                     //Obtenemos el valor en la celda i, j
-                    stringAuxiliar = String.valueOf(modelo.getValueAt(i, j)) ;
+                    stringAuxiliar = String.valueOf(modelo.getValueAt(i, j));
 
                     //validamos que la celda no este vacia y que no sea null
                     if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
@@ -137,7 +136,7 @@ public class Tabla extends JTable {
             for (int j = 0; j < getAncho(); j++) {
 
                 //Obtenemos el valor en la celda i, j
-                stringAuxiliar = String.valueOf(modelo.getValueAt(i, j)) ;
+                stringAuxiliar = String.valueOf(modelo.getValueAt(i, j));
 
                 //validamos que la celda no este vacia y que no sea null
                 if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
@@ -363,5 +362,5 @@ public class Tabla extends JTable {
             }
         }
     }
-
+   
 }

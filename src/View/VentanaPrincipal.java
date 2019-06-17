@@ -44,6 +44,7 @@ public class VentanaPrincipal extends JFrame {
 
     //Indicador de Estado Actual
     public JLabel indicadoDeEstado, JLresultado;
+    public Etiqueta limpiarTabla1, limpiarTabla2;
     
     //MAPA DE BOTONES
     public HashMap<String, Boton> listaBotones = new HashMap<>();
@@ -59,11 +60,10 @@ public class VentanaPrincipal extends JFrame {
         //setLayout(null);        
         agregarPanel();
         crearBarraDeMenu();
-        colocarIndicador();
-        colocarJLabel();
+        colocarIndicador();        
         generarBotones();
         colocarTablas();
-        
+        colocarJLabel();
 
         this.cambiarEstado(this.ANALISIS_DECIMAL);
 
@@ -158,11 +158,6 @@ public class VentanaPrincipal extends JFrame {
     }
 
     /**
-     * Coloca cada uno de los botones de la Ventana
-     */
-
-
-    /**
      * Coloca un indicador superior derecho que lleva el nombre del estado
      * actual de la ventana
      */
@@ -185,21 +180,25 @@ public class VentanaPrincipal extends JFrame {
             case OPERACION_BINARIA:
                 estado = OPERACION_BINARIA;
                 this.tabla2.setVisible(true);
+                this.limpiarTabla2.setVisible(true);
                 this.indicadoDeEstado.setText("OPERACIÓN BINARIA");
                 break;
             case OPERACION_DECIMAL:
                 estado = OPERACION_DECIMAL;
                 this.tabla2.setVisible(true);
+                this.limpiarTabla2.setVisible(true);
                 this.indicadoDeEstado.setText("OPERACIÓN DECIMAL");
                 break;
             case ANALISIS_BINARIO:
                 estado = ANALISIS_BINARIO;
                 this.tabla2.setVisible(false);
+                this.limpiarTabla2.setVisible(false);
                 this.indicadoDeEstado.setText("ANÁLISIS BINARIO");
                 break;
             case ANALISIS_DECIMAL:
                 estado = ANALISIS_DECIMAL;
                 this.tabla2.setVisible(false);
+                this.limpiarTabla2.setVisible(false);
                 this.indicadoDeEstado.setText("ANÁLISIS DECIMAL");
                 break;
         }
@@ -213,6 +212,9 @@ public class VentanaPrincipal extends JFrame {
         tabla1 = new Tabla(new Point(50, 100));
         tabla2 = new Tabla(new Point(50, 330));
         tablaResultado = new Tabla  (new Point(700, 100));
+        
+        tabla1.addKeyListener(new ValidarCaracter());
+        tabla2.addKeyListener(new ValidarCaracter());
 
         panelPrincipal.add(tabla1);
         panelPrincipal.add(tabla2);
@@ -297,6 +299,12 @@ public class VentanaPrincipal extends JFrame {
         
         JLresultado.setVisible(false);
         panelPrincipal.add(JLresultado);
+        
+        limpiarTabla1 = new Etiqueta(tabla1, 551,73);
+        limpiarTabla2 = new Etiqueta(tabla2,551,300);
+        
+        panelPrincipal.add(limpiarTabla1);
+        panelPrincipal.add(limpiarTabla2);
     }
 
     public void resetearVisualizadores(int tipo){
