@@ -47,6 +47,9 @@ public class VentanaPrincipal extends JFrame {
     
     //MAPA DE BOTONES
     public HashMap<String, Boton> listaBotones = new HashMap<>();
+    
+    //Estado de los visualizadores de resultado
+    public final int NINGUNO = 0, LABEL = 1, TABLA = 2;
 
     public VentanaPrincipal() {
         super("MATRIX CALCULATOR");
@@ -296,4 +299,20 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.add(JLresultado);
     }
 
+    public void resetearVisualizadores(int tipo){
+        switch (tipo) {
+            case NINGUNO:
+                JLresultado.setVisible(false);
+                tablaResultado.setVisible(false);
+                break;
+            case LABEL:
+                JLresultado.setVisible(true);
+                tablaResultado.setVisible(false);
+                break;
+            case TABLA:  
+                JLresultado.setVisible(false);
+                tablaResultado.setVisible(true);
+                default: System.err.println("argumento invalido en VentanaPrincipal-> resetearVisualizadores");
+        }
+    }
 }

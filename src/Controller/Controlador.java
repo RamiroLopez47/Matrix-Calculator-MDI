@@ -24,22 +24,22 @@ import Util.Validations;
  * @version 2
  */
 public class Controlador implements ActionListener {
-    
+
     VentanaPrincipal ventana;
-    VentanaAcerca acercaDe=new VentanaAcerca();
-    
+    VentanaAcerca acercaDe = new VentanaAcerca();
+
     //Instancias de objetos destinados al calculo
     AnalisisBinaria analisisBinario = new AnalisisBinaria();
     AnalisisDecimal analisiDecimal = new AnalisisDecimal();
     CalculoBinario calculoBinario = new CalculoBinario();
     CalculoDecimal calculoDecimal = new CalculoDecimal();
-    
+
     //Instanciacion de Validaciones
     Validations validar = new Validations();
-    
+
     //Datos a guardar o abir
     public static Datos dato;
-    
+        
     public Controlador(VentanaPrincipal ventana) {
         this.ventana = ventana;
         ventana.setBounds(0, 0, 200, 300);
@@ -81,7 +81,7 @@ public class Controlador implements ActionListener {
             acerca();
         } else if (e.getActionCommand() == "ayuda") {
             ayuda();
-        } else if (e.getActionCommand() == "llenarAleatorio"){
+        } else if (e.getActionCommand() == "llenarAleatorio") {
             ventana.tabla1.llenarAleatorio();
             ventana.tabla2.llenarAleatorio();
         }
@@ -102,16 +102,16 @@ public class Controlador implements ActionListener {
         ventana.JMI_Decimal_Op.addActionListener(this);
         ventana.JILlenarAleatorio.addActionListener(this);
     }
-    
+
     /**
      * Método que guarda objetos del tipo 'Datos'
      */
     public void guardar() {
         int estAux = VentanaPrincipal.estado;
-        System.out.println("Controlador : Ventana Principal : Estado -> "+ estAux);
+        System.out.println("Controlador : Ventana Principal : Estado -> " + estAux);
         switch (estAux) {
             case 0:
-                dato = new Datos (estAux,ventana.tabla1.getMatrizDecimal());
+                dato = new Datos(estAux, ventana.tabla1.getMatrizDecimal());
                 Persistir.guardar(dato);
                 System.out.println("Controlador : Guardar : Exito");
                 break;
@@ -121,12 +121,12 @@ public class Controlador implements ActionListener {
                 System.out.println("Controlador : Guardar : Exito");
                 break;
             case 2:
-                dato = new Datos(estAux, ventana.tabla1.getMatrizDecimal(),ventana.tabla2.getMatrizDecimal());
+                dato = new Datos(estAux, ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal());
                 Persistir.guardar(dato);
                 System.out.println("Controlador : Guardar : Exito");
                 break;
             case 3:
-                dato = new Datos(estAux, ventana.tabla1.getMatrizBinaria(),ventana.tabla2.getMatrizBinaria());
+                dato = new Datos(estAux, ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria());
                 Persistir.guardar(dato);
                 System.out.println("Controlador : Guardar : Exito");
                 break;
@@ -135,16 +135,16 @@ public class Controlador implements ActionListener {
                 System.out.println("Controlador : Guardar : Error");
         }
     }
-    
+
     /**
      * Método que recupera objetos del tipo 'Datos' guardados previamente
      */
     public void abrir() {
         //se agrega un tryCatch por posible error
         try {
-            dato = (Datos) Persistir.abrir(); 
+            dato = (Datos) Persistir.abrir();
             int estAux = dato.getESTADO();
-            System.out.println("Controlador : Ventana Principal : Estado -> "+ estAux);
+            System.out.println("Controlador : Ventana Principal : Estado -> " + estAux);
             switch (estAux) {
                 case 0:
                     ventana.cambiarEstado(estAux);
@@ -172,7 +172,7 @@ public class Controlador implements ActionListener {
                     System.err.println("¡ Error !");
                     System.out.println("Controlador : Abrir : Error");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
             System.err.println("¡ Error inesperado a la hora de abrir un archivo .mc");
         }
@@ -198,15 +198,16 @@ public class Controlador implements ActionListener {
         acercaDe.setVisible(true);
     }
 
-    private void ayuda() { }
+    private void ayuda() {
+    }
 
     private void agregarOyentesBotones() {
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
-                    ventana.JLresultado.setVisible(true);
-                    ventana.JLresultado.setText("La determinante es: "+String.valueOf(analisiDecimal.determinante(ventana.tabla1.getMatrizDecimal())));
+                    ventana.resetearVisualizadores(ventana.LABEL);
+                    ventana.JLresultado.setText("La determinante es: " + String.valueOf(analisiDecimal.determinante(ventana.tabla1.getMatrizDecimal())));
                 }
             }
         };

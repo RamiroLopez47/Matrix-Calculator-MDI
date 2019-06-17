@@ -94,7 +94,7 @@ public class Tabla extends JTable {
         actualizarValorPorDefecto();
         String stringAuxiliar; //almacenamiento temporal de dato sin tratar
         float floatAuxiliar;//almacenamiento temporal de dato parsedo
-        float[][] retorno = new float[getAncho()][getAlto()]; //Define el tamaño a partir del ultimo dato
+        float[][] retorno = new float[getAlto()][getAncho()]; //Define el tamaño a partir del ultimo dato
 
         try {
             for (int i = 0; i < this.getAlto(); i++) {
