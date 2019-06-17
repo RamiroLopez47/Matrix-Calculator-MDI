@@ -213,4 +213,6 @@ public class Controlador implements ActionListener {
         };
         ventana.listaBotones.get("determinante").addActionListener(determinante);
     }
+    
+    
 }

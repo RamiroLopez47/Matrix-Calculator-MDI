@@ -101,7 +101,7 @@ public class Tabla extends JTable {
                 for (int j = 0; j < getAncho(); j++) {
 
                     //Obtenemos el valor en la celda i, j
-                    stringAuxiliar = (String) modelo.getValueAt(i, j);
+                    stringAuxiliar = String.valueOf(modelo.getValueAt(i, j)) ;
 
                     //validamos que la celda no este vacia y que no sea null
                     if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
@@ -133,29 +133,25 @@ public class Tabla extends JTable {
         int intAuxiliar;//almacenamiento temporal de dato parsedo
         int[][] retorno = new int[this.getAlto()][getAncho()]; //Define el tamaño a partir del ultimo dato
 
-        try {
-            for (int i = 0; i < this.getAlto(); i++) {
-                for (int j = 0; j < getAncho(); j++) {
+        for (int i = 0; i < this.getAlto(); i++) {
+            for (int j = 0; j < getAncho(); j++) {
 
-                    //Obtenemos el valor en la celda i, j
-                    stringAuxiliar = (String) modelo.getValueAt(i, j);
+                //Obtenemos el valor en la celda i, j
+                stringAuxiliar = String.valueOf(modelo.getValueAt(i, j)) ;
 
-                    //validamos que la celda no este vacia y que no sea null
-                    if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
-                        intAuxiliar = 0;
-                        //llenamos la celda con el String Auxiliar
-                        modelo.setValueAt(valorPorDefecto, i, j);
-                    } else {
-                        intAuxiliar = Integer.parseInt(stringAuxiliar);
-                    }
-
-                    retorno[i][j] = intAuxiliar; // asignamos el valor a una matriz de retorno
+                //validamos que la celda no este vacia y que no sea null
+                if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
+                    intAuxiliar = 0;
+                    //llenamos la celda con el String Auxiliar
+                    modelo.setValueAt(valorPorDefecto, i, j);
+                } else {
+                    intAuxiliar = Integer.parseInt(stringAuxiliar);
                 }
-            }
 
-        } catch (Exception e) {
-            System.err.println("ERROR DE TIPO" + e.getMessage());
+                retorno[i][j] = intAuxiliar; // asignamos el valor a una matriz de retorno
+            }
         }
+
         return retorno;
     }
 
@@ -288,7 +284,7 @@ public class Tabla extends JTable {
         String dato;
         for (int i = 0; i < modelo.getRowCount(); i++) {
             for (int j = 0; j < modelo.getColumnCount(); j++) {
-                dato = (String) modelo.getValueAt(i, j);
+                dato = String.valueOf(modelo.getValueAt(i, j));
                 if (dato != null && !dato.isEmpty()) {
                     if (anchoMaximo < j) {
                         anchoMaximo = j;
@@ -310,7 +306,7 @@ public class Tabla extends JTable {
         String dato;
         for (int i = 0; i < modelo.getRowCount(); i++) {
             for (int j = 0; j < modelo.getColumnCount(); j++) {
-                dato = (String) modelo.getValueAt(i, j);
+                dato = String.valueOf(modelo.getValueAt(i, j));
                 if (dato != null && !dato.isEmpty()) {
                     if (altoMaximo < i) {
                         altoMaximo = i;
@@ -335,7 +331,7 @@ public class Tabla extends JTable {
     public void llenar(float[][] matriz) {
         //limpiamos la tabla para preparar el llenado
         this.limpiarTabla();
-        
+
         //cambia el tamaño de la tabla al tamaño maximo requerido por la matriz
         if (matriz.length > matriz[0].length) {
             this.cambiarDimensiones(matriz.length);
@@ -353,7 +349,7 @@ public class Tabla extends JTable {
     public void llenar(int[][] matriz) {
         //limpiamos la tabla para preparar el llenao
         this.limpiarTabla();
-        
+
         //cambia el tamaño de la tabla al tamaño maximo requerido por la matriz
         if (matriz.length > matriz[0].length) {
             this.cambiarDimensiones(matriz.length);
@@ -367,5 +363,5 @@ public class Tabla extends JTable {
             }
         }
     }
-      
+
 }
