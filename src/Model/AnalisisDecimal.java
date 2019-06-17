@@ -37,6 +37,9 @@ public class AnalisisDecimal {
     }
     
     /**
+     * NOTA: Tuve problemas al crear esta funcion, asique la tome de :  
+     * http://chuwiki.chuidiang.org/index.php?title=Determinante_de_una_matriz
+     * 
      * Calcula el determinante de la matriz. Para ello toma la primera fila y se
      * va multiplicando cada coeficiente por el determinante de la matriz de
      * orden n-1 que resulta de suprimir la fila y columna del coeficiente. Hay
@@ -129,4 +132,85 @@ public class AnalisisDecimal {
         }
         return (arreglo3);
     }
+
+
+    public  void RangoMatriz(float[][] matriz){    
+    int dimension = matriz.length; //Variable asignada para editar fácilmente
+    int rango;                     //Cantidad de Filas linealmente independientes
+    double det;                    //Determinante
+    
+    
+    switch (dimension){
+        case 0:
+            rango=0;
+            System.out.println("Rango: "+rango);
+        break;
+        
+        case 1:
+            if (matriz[0][0]!=0){
+                rango=1;
+            System.out.println("Rango: "+rango);}
+            else{
+                rango=0;
+                System.out.println("Rango: "+rango);}
+        break;
+        
+        case 2:
+            det=(matriz[0][0]*matriz[1][1])-(matriz[1][0]*matriz[0][1]);
+        if (det!=0){           
+        rango=2;
+        System.out.println("Rango: "+rango);}
+        else{dimension--;
+                RangoMatriz(matriz);
+                }
+        break;
+        
+        case 3:
+            det = determinante(matriz);
+            if (det!=0){           
+             rango=dimension;
+            System.out.println("Rango: "+rango);}
+            else{dimension--;
+            RangoMatriz(matriz);
+                }
+        break;
+        
+        case 4:
+            det = determinante(matriz);
+            if (det!=0){           
+             rango=dimension;
+            System.out.println("Rango: "+rango);}
+            else{dimension--;
+            RangoMatriz(matriz);
+                }
+        break;
+        
+        case 5:
+            det = determinante(matriz);
+            if (det!=0){           
+             rango=dimension;
+            System.out.println("Rango: "+rango);}
+            else{dimension--;
+            RangoMatriz(matriz);
+                }
+        break;
+        
+        case 6:
+            det = determinante(matriz);
+            if (det!=0){           
+             rango=dimension;
+            System.out.println("Rango: "+rango);}
+            else{dimension--;
+            RangoMatriz(matriz);
+                }
+        break;
+        
+        default:
+            System.out.println("Dimension Invalida.");                       
+        break;
+   
+        }
+    }
 }
+
+
