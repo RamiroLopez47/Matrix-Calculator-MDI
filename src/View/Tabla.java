@@ -131,7 +131,7 @@ public class Tabla extends JTable {
         actualizarValorPorDefecto();
         String stringAuxiliar; //almacenamiento temporal de dato sin tratar
         int intAuxiliar;//almacenamiento temporal de dato parsedo
-        int[][] retorno = new int[getAncho()][getAlto()]; //Define el tamaño a partir del ultimo dato
+        int[][] retorno = new int[this.getAlto()][getAncho()]; //Define el tamaño a partir del ultimo dato
 
         try {
             for (int i = 0; i < this.getAlto(); i++) {

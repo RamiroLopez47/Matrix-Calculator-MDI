@@ -5,12 +5,17 @@
  */
 package Controller;
 
+import Model.AnalisisBinaria;
+import Model.AnalisisDecimal;
+import Model.CalculoBinario;
+import Model.CalculoDecimal;
 import Util.Datos;
 import Util.Persistir;
 import View.VentanaAcerca;
 import View.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Util.Validations;
 
 /**
  *
@@ -22,6 +27,16 @@ public class Controlador implements ActionListener {
     
     VentanaPrincipal ventana;
     VentanaAcerca acercaDe=new VentanaAcerca();
+    
+    //Instancias de objetos destinados al calculo
+    AnalisisBinaria analisisBinario = new AnalisisBinaria();
+    AnalisisDecimal analisiDecimal = new AnalisisDecimal();
+    CalculoBinario calculoBinario = new CalculoBinario();
+    CalculoDecimal calculoDecimal = new CalculoDecimal();
+    
+    //Instanciacion de Validaciones
+    Validations validar = new Validations();
+    
     //Datos a guardar o abir
     public static Datos dato;
     
@@ -189,7 +204,10 @@ public class Controlador implements ActionListener {
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
+                    ventana.JLresultado.setVisible(true);
+                    ventana.JLresultado.setText("La determinante es: "+String.valueOf(analisiDecimal.determinante(ventana.tabla1.getMatrizDecimal())));
+                }
             }
         };
         ventana.listaBotones.get("determinante").addActionListener(determinante);
