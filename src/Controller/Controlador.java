@@ -29,6 +29,7 @@ public class Controlador implements ActionListener {
         this.ventana = ventana;
         ventana.setBounds(0, 0, 200, 300);
         agregarOyentes();
+        agregarOyentesBotones();
         analisis_decimal();
     }
 
@@ -183,4 +184,14 @@ public class Controlador implements ActionListener {
     }
 
     private void ayuda() { }
+
+    private void agregarOyentesBotones() {
+        ActionListener determinante = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        };
+        ventana.listaBotones.get("determinante").addActionListener(determinante);
+    }
 }

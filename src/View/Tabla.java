@@ -367,5 +367,5 @@ public class Tabla extends JTable {
             }
         }
     }
-
+      
 }

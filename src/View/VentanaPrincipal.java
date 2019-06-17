@@ -36,16 +36,17 @@ public class VentanaPrincipal extends JFrame {
 
     public Tabla tabla1;
     public Tabla tabla2;
+    public Tabla tablaResultado;
 
     //Estado actual de la ventana;
     public static final int ANALISIS_DECIMAL = 0, ANALISIS_BINARIO = 1, OPERACION_DECIMAL = 2, OPERACION_BINARIA = 3;
     public static int estado = ANALISIS_DECIMAL;
 
     //Indicador de Estado Actual
-    public JLabel indicadoDeEstado;
-
+    public JLabel indicadoDeEstado, JLresultado;
+    
     //MAPA DE BOTONES
-    HashMap<String, Boton> listaBotones = new HashMap<>();
+    public HashMap<String, Boton> listaBotones = new HashMap<>();
 
     public VentanaPrincipal() {
         super("MATRIX CALCULATOR");
@@ -56,8 +57,10 @@ public class VentanaPrincipal extends JFrame {
         agregarPanel();
         crearBarraDeMenu();
         colocarIndicador();
+        colocarJLabel();
         generarBotones();
         colocarTablas();
+        
 
         this.cambiarEstado(this.ANALISIS_DECIMAL);
 
@@ -206,9 +209,14 @@ public class VentanaPrincipal extends JFrame {
     private void colocarTablas() {
         tabla1 = new Tabla(new Point(50, 100));
         tabla2 = new Tabla(new Point(50, 330));
+        tablaResultado = new Tabla  (new Point(700, 100));
 
         panelPrincipal.add(tabla1);
         panelPrincipal.add(tabla2);
+        panelPrincipal.add(tablaResultado);
+        
+        tablaResultado.setVisible(false);
+        
 
 
     }
@@ -272,6 +280,20 @@ public class VentanaPrincipal extends JFrame {
                 b.getValue().setVisible(true);
             }
         }
+    }
+
+    private void colocarJLabel() {
+        JLresultado = new JLabel("", SwingConstants.CENTER);
+        JLresultado.setForeground(Color.WHITE);
+        JLresultado.setFont(new Font("Arial", Font.BOLD, 15));
+        JLresultado.setSize(600, 200);
+        JLresultado.setLocation(700, 100);
+        JLresultado.setOpaque(true);
+        JLresultado.setAlignmentX(JLabel.LEFT);
+        JLresultado.setBackground(Color.BLACK);
+        
+        JLresultado.setVisible(false);
+        panelPrincipal.add(JLresultado);
     }
 
 }
