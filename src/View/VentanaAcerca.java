@@ -19,12 +19,12 @@ public class VentanaAcerca extends JFrame {
     JPanel panelPrincipal=new JPanel();
     JLabel titulo=new JLabel();
     JLabel version=new JLabel();
-    ImageIcon acercade=new ImageIcon("acercade.png");
+    ImageIcon acercade=new ImageIcon("acercade2.png");
     JLabel informacion=new JLabel(acercade);
     ImageIcon logopng=new ImageIcon("icono.png");
     JLabel imagenlogo=new JLabel(logopng);
     ImageIcon gitlogo=new ImageIcon("iconogit.png");
-    JLabel imagengit=new JLabel(gitlogo);
+    public BotonGit boton=new BotonGit();
     public VentanaAcerca(){
         setTitle("Acerca de MATRIX CALCULATOR");
         iniciarComponentes();
@@ -40,7 +40,7 @@ public class VentanaAcerca extends JFrame {
         panelPrincipal.add(version);
         panelPrincipal.add(informacion);
         panelPrincipal.add(imagenlogo);
-        panelPrincipal.add(imagengit);
+        panelPrincipal.add(boton);
     }
     public void texto(){
         titulo.setText("Matrix Calculator");
@@ -56,8 +56,9 @@ public class VentanaAcerca extends JFrame {
         informacion.setIcon(new ImageIcon(acercade.getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH)));
         imagenlogo.setBounds(10,10,100,100);
         imagenlogo.setIcon(new ImageIcon(logopng.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH)));//Achicar imagen para que entre en la etiqueta
-        imagengit.setBounds(500,80,900,900);
-        imagengit.setIcon(new ImageIcon(gitlogo.getImage().getScaledInstance(60,60, Image.SCALE_SMOOTH)));
+        boton.setBounds(925,400,100,100);
+        boton.setLink("https://github.com/RamiroLopez47/Matrix-Calculator-MDI/");
+        boton.setIcon((new ImageIcon(gitlogo.getImage().getScaledInstance(60,60, Image.SCALE_SMOOTH))));
     }
  }
     
