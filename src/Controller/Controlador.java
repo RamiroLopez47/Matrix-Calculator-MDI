@@ -202,7 +202,7 @@ public class Controlador implements ActionListener {
     }
 
     private void agregarOyentesBotones() {
-        
+        //Analisis Decimal
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -224,7 +224,95 @@ public class Controlador implements ActionListener {
             }
         };
         ventana.listaBotones.get("Inversa").addActionListener(inversa);
-    }
-    
-    
+        
+        ActionListener transpuesta = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ventana.resetearVisualizadores(ventana.TABLA); //No necesita validacion
+                ventana.tablaResultado.llenar(analisiDecimal.transpuesta(ventana.tabla1.getMatrizDecimal()));
+            }  
+        };
+        ventana.listaBotones.get("Transpuesta").addActionListener(transpuesta);
+        
+        
+        ActionListener rangoMatriz = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
+                    ventana.resetearVisualizadores(ventana.LABEL);
+                    ventana.JLresultado.setText("El rango es: " + String.valueOf(analisiDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
+                }
+            }  
+        };
+        ventana.listaBotones.get("Rango").addActionListener(rangoMatriz);
+        
+
+        //Analisis Binaria
+        ActionListener antiSimetrica = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                       ventana.resetearVisualizadores(ventana.LABEL);
+                       ventana.JLresultado.setText("Es Anti-Simetrica");
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("Anti-Simetrica").addActionListener(antiSimetrica);
+        
+        ActionListener simetrica = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                       ventana.resetearVisualizadores(ventana.LABEL);
+                       ventana.JLresultado.setText("Es Simetrica");
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("Simetrica").addActionListener(simetrica);
+        
+        ActionListener reflexiva = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                       ventana.resetearVisualizadores(ventana.LABEL);
+                       ventana.JLresultado.setText("Es Reflexiva");
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("Reflexiva").addActionListener(reflexiva);
+        
+        ActionListener total = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                       ventana.resetearVisualizadores(ventana.LABEL);
+                       ventana.JLresultado.setText("Es Total");
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("Total").addActionListener(total);
+        
+        ActionListener transitiva = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                       ventana.resetearVisualizadores(ventana.LABEL);
+                       ventana.JLresultado.setText("Es Transitiva");
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("Transitiva").addActionListener(transitiva);
+        
+        //OPERACIONES DECIMALES
+    }    
 }
