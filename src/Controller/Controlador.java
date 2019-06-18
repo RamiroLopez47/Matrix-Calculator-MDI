@@ -203,6 +203,7 @@ public class Controlador implements ActionListener {
 
     private void agregarOyentesBotones() {
         //Analisis Decimal
+       
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -312,7 +313,6 @@ public class Controlador implements ActionListener {
             }
         };
         ventana.listaBotones.get("Transitiva").addActionListener(transitiva);
-        
-        //OPERACIONES DECIMALES
+        //HICE PULL ANTES DE HACER PUSH Y YA NO INDICA LAS LINEAS QUE AGREGUE (aproximadamente desde la linea 230 hasta 315)@valeguizamon 
     }    
 }
