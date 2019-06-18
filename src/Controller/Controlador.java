@@ -202,6 +202,7 @@ public class Controlador implements ActionListener {
     }
 
     private void agregarOyentesBotones() {
+        
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -211,7 +212,18 @@ public class Controlador implements ActionListener {
                 }
             }
         };
-        ventana.listaBotones.get("determinante").addActionListener(determinante);
+        ventana.listaBotones.get("Determinante").addActionListener(determinante);
+        
+        ActionListener inversa = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(analisiDecimal.matrizIdentidad(ventana.tabla1.getMatrizDecimal()));
+                }
+            }
+        };
+        ventana.listaBotones.get("Inversa").addActionListener(inversa);
     }
     
     
