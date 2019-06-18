@@ -109,7 +109,7 @@ public class AnalisisDecimal {
         return(arregloaux);
     }
     //Solo por el uso de la funcion elevar
-    private float[][] matrizIdentidad(float [][]arreglo) {
+    public float[][] matrizIdentidad(float [][]arreglo) {
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
                 if(i == j)
@@ -210,6 +210,16 @@ public class AnalisisDecimal {
         break;
    
         }
+    }
+    
+    public float [][]transpuesta(float [][]matriz){
+        float[][]arreglo=new float[matriz.length][matriz.length];
+        for (int i = 0; i < arreglo.length; i++) {
+            for (int j = 0; j < arreglo.length; j++) {
+                arreglo[i][j]=matriz[j][i];
+            }
+        }
+        return (arreglo);
     }
 }
 
