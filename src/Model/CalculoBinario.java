@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author 
+ * @author
  */
 public class CalculoBinario {
 
@@ -72,25 +72,50 @@ public class CalculoBinario {
     }
 
     /**
-     * Composicion Esta funcion devuelve la composicion entre una matriz a y una matriz b
-     * 
+     * Composicion Esta funcion devuelve la composicion entre una matriz a y una
+     * matriz b
+     *
      * @param arreglo matriz 1
-     * @param arreglo2 matriz 2 
-     * @return arreglo3 matriz 3 (resultado de la composicion de la matriz 1 y 2)
+     * @param arreglo2 matriz 2
+     * @return arreglo3 matriz 3 (resultado de la composicion de la matriz 1 y
+     * 2)
      */
-    public int[][] composicion(int arreglo[][],int arreglo2[][]){
+    public int[][] composicion(int arreglo[][], int arreglo2[][]) {
         int[][] arreglo3 = new int[arreglo.length][arreglo2.length];
         if (arreglo[0].length != arreglo2.length) {//Si las columnas de la primer matriz no tienen el mismo largo que las filas de la segunda no se puede realizar esta operacion
             System.out.println("No puede hacerse composicion con estas matrices");
-        }else{
-            for (int x=0; x < arreglo3.length; x++) {
-                for (int y=0; y < arreglo3[x].length; y++) {
-                    for (int z=0; z<arreglo[0].length; z++) {
-                        arreglo3 [x][y] += arreglo[x][z]*arreglo2[z][y]; 
+        } else {
+            for (int x = 0; x < arreglo3.length; x++) {
+                for (int y = 0; y < arreglo3[x].length; y++) {
+                    for (int z = 0; z < arreglo[0].length; z++) {
+                        arreglo3[x][y] += arreglo[x][z] * arreglo2[z][y];
                     }
                 }
             }
         }
         return arreglo3;
     }
-}       
+
+    /**
+     * Interseccion Devuelve los elementos que tienen en común la matriz A y la
+     * matriz B.
+     *
+     * @param arreglo matriz 1
+     * @param arreglo2 matriz 2
+     * @return arreglo3 matriz 3 (resultado de la intersección entre las matrices 1 y  2)
+     */
+    public int[][] interseccion(int[][] arreglo, int[][] arreglo2) {
+        int[][] arreglo3 = new int[arreglo.length][arreglo[0].length];
+        for (int i = 0; i < arreglo3.length; i++) {
+            for (int j = 0; j < arreglo3[0].length; j++) {
+                if (arreglo[i][j] == 1 && arreglo2[i][j] == 1) {
+                    arreglo3[i][j] = 1;
+                } else {
+                    arreglo3[i][j] = 0;
+                }
+            }
+        }
+        return arreglo3;
+    }
+
+}
