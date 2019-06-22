@@ -202,8 +202,9 @@ public class Controlador implements ActionListener {
     }
 
     private void agregarOyentesBotones() {
-        //Analisis Decimal
-
+        /**
+         * -------------Analisis Decimal-------------------
+         */
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -247,9 +248,7 @@ public class Controlador implements ActionListener {
         ventana.listaBotones.get("rango").addActionListener(rangoMatriz);
 
         /**
-         *---------------- 
-         *Analisis Binaria
-         *----------------
+         * ---------------- Analisis Binaria ----------------
          */
         ActionListener antiSimetrica = new ActionListener() {
             @Override
@@ -316,5 +315,64 @@ public class Controlador implements ActionListener {
         };
         ventana.listaBotones.get("analizar").addActionListener(transitiva);
         //HICE PULL ANTES DE HACER PUSH Y YA NO INDICA LAS LINEAS QUE AGREGUE (aproximadamente desde la linea 230 hasta 315)@valeguizamon 
+
+        /**
+         * ---------------- Operaciones Binaria ----------------
+         */
+        ActionListener diferencia = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                    if (validar.mismoTamanio(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                        ventana.resetearVisualizadores(ventana.TABLA);
+                        ventana.tablaResultado.llenar(calculoBinario.diferencia(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria()));
+                    }
+
+                }
+            }
+        };
+        ventana.listaBotones.get("diferencia").addActionListener(diferencia);
+
+        ActionListener composicion = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                    if (validar.mismoTamanio(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                        ventana.resetearVisualizadores(ventana.TABLA);
+                        ventana.tablaResultado.llenar(calculoBinario.composicion(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria()));
+                    }
+
+                }
+            }
+        };
+        ventana.listaBotones.get("composicion").addActionListener(composicion);
+
+        ActionListener union = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                    if (validar.mismoTamanio(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                        ventana.resetearVisualizadores(ventana.TABLA);
+                        ventana.tablaResultado.llenar(calculoBinario.union(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria()));
+                    }
+
+                }
+            }
+        };
+        ventana.listaBotones.get("union").addActionListener(union);
+
+        ActionListener complemento = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
+
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(calculoBinario.complemento(ventana.tabla1.getMatrizBinaria()));
+                }
+
+            }
+        };
+        ventana.listaBotones.get("complemento").addActionListener(complemento);
+
     }
 }

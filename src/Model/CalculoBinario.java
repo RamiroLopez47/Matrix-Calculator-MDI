@@ -96,13 +96,29 @@ public class CalculoBinario {
         return arreglo3;
     }
 
+    public int[][] complemento(int[][] arreglo) {
+        int[][] complemento = new int[arreglo.length][arreglo[0].length];
+        for (int i = 0; i < arreglo.length; i++) {
+            for (int j = 0; j < arreglo[0].length; j++) {
+                complemento[i][j] = (1 - arreglo[i][j]);
+                if (complemento[i][j] < 0) {
+                    complemento[i][j] = 0;
+                }
+
+            }
+        }
+
+        return complemento;
+    }
+
     /**
      * Interseccion Devuelve los elementos que tienen en común la matriz A y la
      * matriz B.
      *
      * @param arreglo matriz 1
      * @param arreglo2 matriz 2
-     * @return arreglo3 matriz 3 (resultado de la intersección entre las matrices 1 y  2)
+     * @return arreglo3 matriz 3 (resultado de la intersección entre las
+     * matrices 1 y 2)
      */
     public int[][] interseccion(int[][] arreglo, int[][] arreglo2) {
         int[][] arreglo3 = new int[arreglo.length][arreglo[0].length];
