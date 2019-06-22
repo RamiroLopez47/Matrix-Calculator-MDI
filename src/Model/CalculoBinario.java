@@ -89,6 +89,8 @@ public class CalculoBinario {
                 for (int y = 0; y < arreglo3[x].length; y++) {
                     for (int z = 0; z < arreglo[0].length; z++) {
                         arreglo3[x][y] += arreglo[x][z] * arreglo2[z][y];
+                        if (arreglo3[x][y]>1){
+                        arreglo3[x][y]=1;}
                     }
                 }
             }
