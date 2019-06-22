@@ -246,7 +246,7 @@ public class Controlador implements ActionListener {
             }
         };
         ventana.listaBotones.get("rango").addActionListener(rangoMatriz);
-        
+
         /**
          * ---------------- Analisis Binaria ----------------
          */
@@ -255,13 +255,13 @@ public class Controlador implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (validar.esBinaria(ventana.tabla1.getMatrizBinaria()) && validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
                     ventana.resetearVisualizadores(ventana.LABEL);
-                    ventana.JLresultado.setText("Reflexiva: "+analisisBinario.reflexiva(ventana.tabla1.getMatrizBinaria())+" | \n"
-                            + "Simetrica: "+analisisBinario.simetrica(ventana.tabla1.getMatrizBinaria())+" | \n"
-                                    + "Transitiva: "+analisisBinario.transitiva(ventana.tabla1.getMatrizBinaria())+" | \n"
-                            + "Antisimetrica: "+analisisBinario.antiSimetrica(ventana.tabla1.getMatrizBinaria())+" | \n"
-                                    + "Total: "+analisisBinario.total(ventana.tabla1.getMatrizBinaria()));
+                    ventana.JLresultado.setText("Reflexiva: " + analisisBinario.reflexiva(ventana.tabla1.getMatrizBinaria()) + " | \n"
+                            + "Simetrica: " + analisisBinario.simetrica(ventana.tabla1.getMatrizBinaria()) + " | \n"
+                            + "Transitiva: " + analisisBinario.transitiva(ventana.tabla1.getMatrizBinaria()) + " | \n"
+                            + "Antisimetrica: " + analisisBinario.antiSimetrica(ventana.tabla1.getMatrizBinaria()) + " | \n"
+                            + "Total: " + analisisBinario.total(ventana.tabla1.getMatrizBinaria()));
                 }
-                
+
             }
         };
         ventana.listaBotones.get("analizar").addActionListener(analizar);
@@ -324,5 +324,33 @@ public class Controlador implements ActionListener {
         };
         ventana.listaBotones.get("complemento").addActionListener(complemento);
 
+        ActionListener traspuesta = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
+
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(calculoBinario.traspuesta((ventana.tabla1.getMatrizBinaria())));
+                }
+
+            }
+        };
+        ventana.listaBotones.get("traspuesta_binaria").addActionListener(traspuesta);
+
+        ActionListener interseccion = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
+                    if (validar.mismoTamanio(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria())) {
+                        ventana.resetearVisualizadores(ventana.TABLA);
+                        ventana.tablaResultado.llenar(calculoBinario.interseccion(ventana.tabla1.getMatrizBinaria(), ventana.tabla2.getMatrizBinaria()));
+                    }
+                }
+            }
+        };
+        ventana.listaBotones.get("interseccion").addActionListener(interseccion);
+
     }
+
+    //ventana.JLresultado.setText("El rango es: " + String.valueOf(calculoDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
 }
