@@ -4,6 +4,8 @@
  */
 package View;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -21,7 +23,7 @@ import javax.swing.table.TableColumnModel;
  * autoria https://github.com/marcelocattani
  * @version 2
  */
-public class Tabla extends JTable {
+public class Tabla extends JTable implements KeyListener{
 
     public DefaultTableModel modelo;
     private TableColumnModel modeloColumna;
@@ -37,7 +39,8 @@ public class Tabla extends JTable {
         super(tamaño, tamaño);
         modelo = (DefaultTableModel) this.getModel();
         cambiarDimensiones(tamaño);
-        this.setLocation(localizacion);        
+        this.setLocation(localizacion); 
+        this.addKeyListener(this);
     }
 
     /**
@@ -361,6 +364,24 @@ public class Tabla extends JTable {
                 this.modelo.setValueAt(matriz[i][j], i, j);
             }
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        this.setRequestFocusEnabled(true);
+        e.consume();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        this.setRequestFocusEnabled(true);
+        e.consume();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+       this.setRequestFocusEnabled(true);
+        e.consume();
     }
    
 }

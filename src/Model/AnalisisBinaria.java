@@ -18,21 +18,20 @@ public class AnalisisBinaria {
      * @param arreglo entero
      * @return boolean
      */
-    public boolean reflexiva(int [][]arreglo){
-        boolean resp=false; //respuesta,
+    public String reflexiva(int [][]arreglo){
+       
         int [][]arregloAux=new int [arreglo.length][arreglo.length];
         matrizIdentidad(arregloAux);
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
                 if(arregloAux[i][j]<= arreglo[i][j])
-                    resp=true;
+                    return "Si";
                 else{
-                    resp=false;
-                    break;
+                    return "No";                    
                 }
             }
         }
-        return resp;
+        return null;
     }
 
     /**
@@ -41,22 +40,22 @@ public class AnalisisBinaria {
      * @param arreglo entero
      * @return boolean
      */
-    public boolean simetrica(int [][]arreglo){
-        boolean resp=false; //respuesta,
+    public String simetrica(int [][]arreglo){
+        
         int [][]arregloAux=new int [arreglo.length][arreglo.length];
         copiarMatriz(arregloAux, arreglo);
         matrizTraspuesta(arregloAux);
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
                 if (arreglo[i][j]==arregloAux[i][j])
-                    resp=true;
+                    return "Si";
                 else{
-                    resp=false;
-                    break;
+                    return "No";
+                   
                 }
             }
         }
-        return resp;
+        return null;
     }
 
     /**
@@ -65,8 +64,8 @@ public class AnalisisBinaria {
      * @param arreglo entero
      * @return boolean
      */    
-    public boolean antiSimetrica(int [][]arreglo){
-        boolean resp=false; //respuesta,
+    public String antiSimetrica(int [][]arreglo){
+        String resp=null; //respuesta,
         //arreglo para la traspuesta
         int [][]arregloAux=new int [arreglo.length][arreglo.length];
         //arreglo para conjuncion
@@ -88,8 +87,8 @@ public class AnalisisBinaria {
      * @param arreglo entero
      * @return boolean
      */    
-    public boolean transitiva(int [][]arreglo){
-        boolean resp=false;
+    public String transitiva(int [][]arreglo){
+        String resp="";
         //Arreglo para copiar elementos
         int [][]arregloAux=new int [arreglo.length][arreglo.length];
         copiarMatriz(arregloAux, arreglo);
@@ -99,9 +98,9 @@ public class AnalisisBinaria {
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
                 if (arregloAuxC[i][j]<=arreglo[i][j])
-                    resp=true;
+                    resp="Si";
                 else{
-                    resp=false;
+                    resp="No";
                     break;
                 }
             }
@@ -115,8 +114,8 @@ public class AnalisisBinaria {
      * @param arreglo entero 
      * @return boolean
      */   
-    public boolean total(int [][]arreglo){
-        boolean resp; //respuesta,
+    public String total(int [][]arreglo){
+        String resp; //respuesta,
         //arreglo para la traspuesta
         int [][]arregloAux=new int [arreglo.length][arreglo.length];
         //arreglo para disyunción
@@ -195,9 +194,9 @@ public class AnalisisBinaria {
     /*
      * Solo para funciones 'antiSimetrica' y 'total'.
      */
-    private boolean comparar(int [][]argResul,char resp){
+    private String comparar(int [][]argResul,char resp){
     //parametros(arrreglo Resultado, char para elegir opción);
-        boolean respAux=false;
+        String respAux= null;
         //arreglo para matriz identidad
         int [][]arregloAux=new int [argResul.length][argResul.length];
         if (resp=='a') { //'a' <-> 'antiSimetrica'
@@ -205,9 +204,9 @@ public class AnalisisBinaria {
             for (int i = 0; i < argResul.length; i++) {
                 for (int j = 0; j < argResul.length; j++) {
                     if(argResul[i][j]<= arregloAux[i][j])
-                        respAux=true;
+                        respAux= "Si";
                     else{
-                        respAux=false;
+                        respAux="No";
                         break;
                     }
                 } 
@@ -218,9 +217,9 @@ public class AnalisisBinaria {
                 for (int i = 0; i < argResul.length; i++) {
                     for (int j = 0; j < argResul.length; j++) {
                         if(argResul[i][j]==arregloAux[i][j])
-                            respAux=true;
+                            respAux="Si";
                         else{
-                            respAux=false;
+                            respAux="No";
                             break;
                         }
                     } 

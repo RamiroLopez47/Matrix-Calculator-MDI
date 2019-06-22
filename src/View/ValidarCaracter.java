@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 public class ValidarCaracter implements KeyListener {
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {        
         e.consume();
         System.out.println("sucede 1");
     }

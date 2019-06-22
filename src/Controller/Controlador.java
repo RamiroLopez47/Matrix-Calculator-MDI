@@ -246,75 +246,25 @@ public class Controlador implements ActionListener {
             }
         };
         ventana.listaBotones.get("rango").addActionListener(rangoMatriz);
-
+        
         /**
          * ---------------- Analisis Binaria ----------------
          */
-        ActionListener antiSimetrica = new ActionListener() {
+        ActionListener analizar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
-                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                        ventana.resetearVisualizadores(ventana.LABEL);
-                        ventana.JLresultado.setText("Es Anti-Simetrica");
-                    }
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria()) && validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                    ventana.resetearVisualizadores(ventana.LABEL);
+                    ventana.JLresultado.setText("Reflexiva: "+analisisBinario.reflexiva(ventana.tabla1.getMatrizBinaria())+" | \n"
+                            + "Simetrica: "+analisisBinario.simetrica(ventana.tabla1.getMatrizBinaria())+" | \n"
+                                    + "Transitiva: "+analisisBinario.transitiva(ventana.tabla1.getMatrizBinaria())+" | \n"
+                            + "Antisimetrica: "+analisisBinario.antiSimetrica(ventana.tabla1.getMatrizBinaria())+" | \n"
+                                    + "Total: "+analisisBinario.total(ventana.tabla1.getMatrizBinaria()));
                 }
+                
             }
         };
-        ventana.listaBotones.get("analizar").addActionListener(antiSimetrica);
-
-        ActionListener simetrica = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
-                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                        ventana.resetearVisualizadores(ventana.LABEL);
-                        ventana.JLresultado.setText("Es Simetrica");
-                    }
-                }
-            }
-        };
-        ventana.listaBotones.get("analizar").addActionListener(simetrica);
-
-        ActionListener reflexiva = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
-                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                        ventana.resetearVisualizadores(ventana.LABEL);
-                        ventana.JLresultado.setText("Es Reflexiva");
-                    }
-                }
-            }
-        };
-        ventana.listaBotones.get("analizar").addActionListener(reflexiva);
-
-        ActionListener total = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
-                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                        ventana.resetearVisualizadores(ventana.LABEL);
-                        ventana.JLresultado.setText("Es Total");
-                    }
-                }
-            }
-        };
-        ventana.listaBotones.get("analizar").addActionListener(total);
-
-        ActionListener transitiva = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
-                    if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                        ventana.resetearVisualizadores(ventana.LABEL);
-                        ventana.JLresultado.setText("Es Transitiva");
-                    }
-                }
-            }
-        };
-        ventana.listaBotones.get("analizar").addActionListener(transitiva);
-        //HICE PULL ANTES DE HACER PUSH Y YA NO INDICA LAS LINEAS QUE AGREGUE (aproximadamente desde la linea 230 hasta 315)@valeguizamon 
+        ventana.listaBotones.get("analizar").addActionListener(analizar);
 
         /**
          * ---------------- Operaciones Binaria ----------------

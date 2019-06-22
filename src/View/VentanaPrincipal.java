@@ -213,8 +213,6 @@ public class VentanaPrincipal extends JFrame {
         tabla2 = new Tabla(new Point(50, 330));
         tablaResultado = new Tabla  (new Point(700, 100));
         
-        tabla1.addKeyListener(new ValidarCaracter());
-        tabla2.addKeyListener(new ValidarCaracter());
 
         panelPrincipal.add(tabla1);
         panelPrincipal.add(tabla2);
