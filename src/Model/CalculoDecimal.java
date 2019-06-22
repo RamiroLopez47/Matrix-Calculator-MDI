@@ -155,7 +155,7 @@ public class CalculoDecimal {
      * Método para encontrar el rango de una matriz.
      * FUENTE: https://www.geeksforgeeks.org/program-for-rank-of-matrix/
      */
-    static int rangoMatriz(float matriz[][]) {
+    public static int rangoMatriz(float matriz[][]) {
 
         int rango = matriz[0].length;
 

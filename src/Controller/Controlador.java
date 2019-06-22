@@ -39,7 +39,7 @@ public class Controlador implements ActionListener {
 
     //Datos a guardar o abir
     public static Datos dato;
-        
+
     public Controlador(VentanaPrincipal ventana) {
         this.ventana = ventana;
         ventana.setBounds(0, 0, 200, 300);
@@ -203,18 +203,18 @@ public class Controlador implements ActionListener {
 
     private void agregarOyentesBotones() {
         //Analisis Decimal
-       
+
         ActionListener determinante = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
                     ventana.resetearVisualizadores(ventana.LABEL);
-                    ventana.JLresultado.setText("La determinante es: " + String.valueOf(analisiDecimal.determinante(ventana.tabla1.getMatrizDecimal())));
+                    ventana.JLresultado.setText("El determinante es: " + String.valueOf(analisiDecimal.determinante(ventana.tabla1.getMatrizDecimal())));
                 }
             }
         };
-        ventana.listaBotones.get("Determinante").addActionListener(determinante);
-        
+        ventana.listaBotones.get("determinante").addActionListener(determinante);
+
         ActionListener inversa = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -224,95 +224,97 @@ public class Controlador implements ActionListener {
                 }
             }
         };
-        ventana.listaBotones.get("Inversa").addActionListener(inversa);
-        
-        ActionListener transpuesta = new ActionListener(){
+        ventana.listaBotones.get("inversa").addActionListener(inversa);
+
+        ActionListener transpuesta = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 ventana.resetearVisualizadores(ventana.TABLA); //No necesita validacion
                 ventana.tablaResultado.llenar(analisiDecimal.transpuesta(ventana.tabla1.getMatrizDecimal()));
-            }  
+            }
         };
-        ventana.listaBotones.get("Transpuesta").addActionListener(transpuesta);
-        
-        
-        ActionListener rangoMatriz = new ActionListener(){
+        ventana.listaBotones.get("traspuesta_decimal").addActionListener(transpuesta);
+
+        ActionListener rangoMatriz = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (validar.esCuadrada(ventana.tabla1.getMatrizDecimal())) {
                     ventana.resetearVisualizadores(ventana.LABEL);
-                    ventana.JLresultado.setText("El rango es: " + String.valueOf(analisiDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
+                    ventana.JLresultado.setText("El rango es: " + String.valueOf(calculoDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
                 }
-            }  
+            }
         };
-        ventana.listaBotones.get("Rango").addActionListener(rangoMatriz);
-        
+        ventana.listaBotones.get("rango").addActionListener(rangoMatriz);
 
-        //Analisis Binaria
-        ActionListener antiSimetrica = new ActionListener(){
+        /**
+         *---------------- 
+         *Analisis Binaria
+         *----------------
+         */
+        ActionListener antiSimetrica = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
                     if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                       ventana.resetearVisualizadores(ventana.LABEL);
-                       ventana.JLresultado.setText("Es Anti-Simetrica");
+                        ventana.resetearVisualizadores(ventana.LABEL);
+                        ventana.JLresultado.setText("Es Anti-Simetrica");
                     }
                 }
             }
         };
-        ventana.listaBotones.get("Anti-Simetrica").addActionListener(antiSimetrica);
-        
-        ActionListener simetrica = new ActionListener(){
+        ventana.listaBotones.get("analizar").addActionListener(antiSimetrica);
+
+        ActionListener simetrica = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
                     if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                       ventana.resetearVisualizadores(ventana.LABEL);
-                       ventana.JLresultado.setText("Es Simetrica");
+                        ventana.resetearVisualizadores(ventana.LABEL);
+                        ventana.JLresultado.setText("Es Simetrica");
                     }
                 }
             }
         };
-        ventana.listaBotones.get("Simetrica").addActionListener(simetrica);
-        
-        ActionListener reflexiva = new ActionListener(){
+        ventana.listaBotones.get("analizar").addActionListener(simetrica);
+
+        ActionListener reflexiva = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
                     if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                       ventana.resetearVisualizadores(ventana.LABEL);
-                       ventana.JLresultado.setText("Es Reflexiva");
+                        ventana.resetearVisualizadores(ventana.LABEL);
+                        ventana.JLresultado.setText("Es Reflexiva");
                     }
                 }
             }
         };
-        ventana.listaBotones.get("Reflexiva").addActionListener(reflexiva);
-        
-        ActionListener total = new ActionListener(){
+        ventana.listaBotones.get("analizar").addActionListener(reflexiva);
+
+        ActionListener total = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
                     if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                       ventana.resetearVisualizadores(ventana.LABEL);
-                       ventana.JLresultado.setText("Es Total");
+                        ventana.resetearVisualizadores(ventana.LABEL);
+                        ventana.JLresultado.setText("Es Total");
                     }
                 }
             }
         };
-        ventana.listaBotones.get("Total").addActionListener(total);
-        
-        ActionListener transitiva = new ActionListener(){
+        ventana.listaBotones.get("analizar").addActionListener(total);
+
+        ActionListener transitiva = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())){
+                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria())) {
                     if (validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
-                       ventana.resetearVisualizadores(ventana.LABEL);
-                       ventana.JLresultado.setText("Es Transitiva");
+                        ventana.resetearVisualizadores(ventana.LABEL);
+                        ventana.JLresultado.setText("Es Transitiva");
                     }
                 }
             }
         };
-        ventana.listaBotones.get("Transitiva").addActionListener(transitiva);
+        ventana.listaBotones.get("analizar").addActionListener(transitiva);
         //HICE PULL ANTES DE HACER PUSH Y YA NO INDICA LAS LINEAS QUE AGREGUE (aproximadamente desde la linea 230 hasta 315)@valeguizamon 
-    }    
+    }
 }
