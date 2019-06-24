@@ -11,6 +11,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Random;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,7 @@ public class Tabla extends JTable /*implements KeyListener*/ {
     public DefaultTableModel modelo;
     private TableColumnModel modeloColumna;
     private String valorPorDefecto;
+    private Icon iconoFacePalm = new ImageIcon(getClass().getResource("/Icons/facePalm.png"));
 
     /**
      * Construye una tabla con el tamaño especificado en una posicion
@@ -115,7 +118,7 @@ public class Tabla extends JTable /*implements KeyListener*/ {
                         floatAuxiliar = Float.parseFloat(stringAuxiliar);
                     } catch (java.lang.NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "Por Favor verifique la columna: " + (j + 1) + "\n "
-                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.ERROR_MESSAGE);
+                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.PLAIN_MESSAGE,iconoFacePalm);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Ha ocurrio un Error de tipo desconocido", "Vaya la hemos liado", JOptionPane.ERROR_MESSAGE);
                     }
@@ -154,11 +157,13 @@ public class Tabla extends JTable /*implements KeyListener*/ {
                 } else {
                     try {
                         intAuxiliar = Integer.parseInt(stringAuxiliar);
-                    } catch (java.lang.NumberFormatException e) {
+                    } catch (java.lang.NumberFormatException e) { 
                         JOptionPane.showMessageDialog(null, "Por Favor verifique la columna: " + (j + 1) + "\n "
-                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.ERROR_MESSAGE);
+                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.PLAIN_MESSAGE,
+                               iconoFacePalm);
+                               
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Ha ocurrio un Error de tipo desconocido", "Vaya la hemos liado", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Ha ocurrio un Error de tipo desconocido", "Vaya la hemos liado", JOptionPane.ERROR_MESSAGE);                        
                     }
 
                 }

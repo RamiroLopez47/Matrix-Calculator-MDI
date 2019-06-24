@@ -203,6 +203,9 @@ public class VentanaPrincipal extends JFrame {
                 break;
         }
         evaluarVisibilidadesBotones();
+        this.tabla1.limpiarTabla();
+        this.tabla2.limpiarTabla();
+        this.tablaResultado.limpiarTabla();
     }
 
     /**
