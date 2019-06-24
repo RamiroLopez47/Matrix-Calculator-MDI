@@ -400,7 +400,7 @@ public class Controlador implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ventana.resetearVisualizadores(ventana.TABLA); //No necesita validaciones
-                int exponente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero por el cual quiere multiplicar cada factor de la Matriz"));
+                int exponente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero por el cual quiere elevar cada factor de la Matriz"));
                 ventana.tablaResultado.llenar(calculoDecimal.elevar(ventana.tabla1.getMatrizDecimal(), exponente));
             }
         };
