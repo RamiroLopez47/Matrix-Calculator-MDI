@@ -254,13 +254,14 @@ public class Controlador implements ActionListener {
         ActionListener analizar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (validar.esBinaria(ventana.tabla1.getMatrizBinaria()) && validar.esCuadrada(ventana.tabla1.getMatrizBinaria())) {
+                int[][] aux = ventana.tabla1.getMatrizBinaria();
+                if (validar.esBinaria(aux) && validar.esCuadrada(aux)) {
                     ventana.resetearVisualizadores(ventana.LABEL);
-                    ventana.JLresultado.setText("Reflexiva: " + analisisBinario.reflexiva(ventana.tabla1.getMatrizBinaria()) + " | \n"
-                            + "Simetrica: " + analisisBinario.simetrica(ventana.tabla1.getMatrizBinaria()) + " | \n"
-                            + "Transitiva: " + analisisBinario.transitiva(ventana.tabla1.getMatrizBinaria()) + " | \n"
-                            + "Antisimetrica: " + analisisBinario.antiSimetrica(ventana.tabla1.getMatrizBinaria()) + " | \n"
-                            + "Total: " + analisisBinario.total(ventana.tabla1.getMatrizBinaria()));
+                    ventana.JLresultado.setText("Reflexiva: " + analisisBinario.reflexiva(aux) + " | \n"
+                            + "Simetrica: " + analisisBinario.simetrica(aux) + " | \n"
+                            + "Transitiva: " + analisisBinario.transitiva(aux) + " | \n"
+                            + "Antisimetrica: " + analisisBinario.antiSimetrica(aux) + " | \n"
+                            + "Total: " + analisisBinario.total(aux));
                 }
 
             }

@@ -3,6 +3,7 @@
  * 
  */
 package View;
+
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,7 +24,7 @@ import javax.swing.table.TableColumnModel;
  * autoria https://github.com/marcelocattani
  * @version 2
  */
-public class Tabla extends JTable implements KeyListener{
+public class Tabla extends JTable /*implements KeyListener*/ {
 
     public DefaultTableModel modelo;
     private TableColumnModel modeloColumna;
@@ -39,8 +40,8 @@ public class Tabla extends JTable implements KeyListener{
         super(tamaño, tamaño);
         modelo = (DefaultTableModel) this.getModel();
         cambiarDimensiones(tamaño);
-        this.setLocation(localizacion); 
-        this.addKeyListener(this);
+        this.setLocation(localizacion);
+        //this.addKeyListener(this);
     }
 
     /**
@@ -95,32 +96,36 @@ public class Tabla extends JTable implements KeyListener{
     public float[][] getMatrizDecimal() {
         actualizarValorPorDefecto();
         String stringAuxiliar; //almacenamiento temporal de dato sin tratar
-        float floatAuxiliar;//almacenamiento temporal de dato parsedo
-        float[][] retorno = new float[getAlto()][getAncho()]; //Define el tamaño a partir del ultimo dato
+        float floatAuxiliar = 0f;//almacenamiento temporal de dato parsedo
+        float[][] retorno = new float[this.getAlto()][this.getAncho()]; //Define el tamaño a partir del ultimo dato
 
-        try {
-            for (int i = 0; i < this.getAlto(); i++) {
-                for (int j = 0; j < getAncho(); j++) {
+        for (int i = 0; i < this.getAlto(); i++) {
+            for (int j = 0; j < this.getAncho(); j++) {
 
-                    //Obtenemos el valor en la celda i, j
-                    stringAuxiliar = String.valueOf(modelo.getValueAt(i, j));
+                //Obtenemos el valor en la celda i, j
+                stringAuxiliar = String.valueOf(modelo.getValueAt(i, j));
 
-                    //validamos que la celda no este vacia y que no sea null
-                    if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
-                        floatAuxiliar = 0.0f;
-                        //llenamos la celda con el String Auxiliar
-                        modelo.setValueAt(valorPorDefecto, i, j);
-                    } else {
+                //validamos que la celda no este vacia y que no sea null
+                if (stringAuxiliar.equals("null") || stringAuxiliar.isEmpty()) {
+                    floatAuxiliar = 0.0f;
+                    //llenamos la celda con el String Auxiliar
+                    modelo.setValueAt(valorPorDefecto, i, j);
+                } else {
+                    try {
                         floatAuxiliar = Float.parseFloat(stringAuxiliar);
+                    } catch (java.lang.NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Por Favor verifique la columna: " + (j + 1) + "\n "
+                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ha ocurrio un Error de tipo desconocido", "Vaya la hemos liado", JOptionPane.ERROR_MESSAGE);
                     }
 
-                    retorno[i][j] = floatAuxiliar; // asignamos el valor a una matriz de retorno
                 }
-            }
 
-        } catch (Exception e) {
-            System.err.println("ERROR DE TIPO" + e.getMessage());
+                retorno[i][j] = floatAuxiliar; // asignamos el valor a una matriz de retorno
+            }
         }
+
         return retorno;
     }
 
@@ -132,7 +137,7 @@ public class Tabla extends JTable implements KeyListener{
     public int[][] getMatrizBinaria() {
         actualizarValorPorDefecto();
         String stringAuxiliar; //almacenamiento temporal de dato sin tratar
-        int intAuxiliar;//almacenamiento temporal de dato parsedo
+        int intAuxiliar = 0;//almacenamiento temporal de dato parsedo
         int[][] retorno = new int[this.getAlto()][getAncho()]; //Define el tamaño a partir del ultimo dato
 
         for (int i = 0; i < this.getAlto(); i++) {
@@ -142,12 +147,20 @@ public class Tabla extends JTable implements KeyListener{
                 stringAuxiliar = String.valueOf(modelo.getValueAt(i, j));
 
                 //validamos que la celda no este vacia y que no sea null
-                if (stringAuxiliar == null || stringAuxiliar.isEmpty()) {
+                if (stringAuxiliar.equals("null") || stringAuxiliar.isEmpty()) {
                     intAuxiliar = 0;
                     //llenamos la celda con el String Auxiliar
                     modelo.setValueAt(valorPorDefecto, i, j);
                 } else {
-                    intAuxiliar = Integer.parseInt(stringAuxiliar);
+                    try {
+                        intAuxiliar = Integer.parseInt(stringAuxiliar);
+                    } catch (java.lang.NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Por Favor verifique la columna: " + (j + 1) + "\n "
+                                + " y fila: " + (i + 1), "Caracter no Válido", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ha ocurrio un Error de tipo desconocido", "Vaya la hemos liado", JOptionPane.ERROR_MESSAGE);
+                    }
+
                 }
 
                 retorno[i][j] = intAuxiliar; // asignamos el valor a una matriz de retorno
@@ -287,7 +300,7 @@ public class Tabla extends JTable implements KeyListener{
         for (int i = 0; i < modelo.getRowCount(); i++) {
             for (int j = 0; j < modelo.getColumnCount(); j++) {
                 dato = String.valueOf(modelo.getValueAt(i, j));
-                if (dato != null && !dato.isEmpty()) {
+                if (!dato.equals("null") && !dato.isEmpty()) {
                     if (anchoMaximo < j) {
                         anchoMaximo = j;
                     }
@@ -309,13 +322,14 @@ public class Tabla extends JTable implements KeyListener{
         for (int i = 0; i < modelo.getRowCount(); i++) {
             for (int j = 0; j < modelo.getColumnCount(); j++) {
                 dato = String.valueOf(modelo.getValueAt(i, j));
-                if (dato != null && !dato.isEmpty()) {
+                if (!dato.equals("null") && !dato.isEmpty()) {
                     if (altoMaximo < i) {
                         altoMaximo = i;
                     }
                 }
             }
         }
+
         return altoMaximo + 1;
     }
 
@@ -366,6 +380,7 @@ public class Tabla extends JTable implements KeyListener{
         }
     }
 
+    /*
     @Override
     public void keyTyped(KeyEvent e) {
         this.setRequestFocusEnabled(true);
@@ -382,6 +397,5 @@ public class Tabla extends JTable implements KeyListener{
     public void keyReleased(KeyEvent e) {
        this.setRequestFocusEnabled(true);
         e.consume();
-    }
-   
+    }*/
 }

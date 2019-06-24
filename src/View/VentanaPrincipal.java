@@ -318,6 +318,7 @@ public class VentanaPrincipal extends JFrame {
             case TABLA:  
                 JLresultado.setVisible(false);
                 tablaResultado.setVisible(true);
+                break;
                 default: System.err.println("argumento invalido en VentanaPrincipal-> resetearVisualizadores");
         }
     }
