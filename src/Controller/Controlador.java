@@ -399,9 +399,11 @@ public class Controlador implements ActionListener {
         ActionListener elevar = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(validar.esCuadrada(ventana.tabla1.getMatrizDecimal())){
                 ventana.resetearVisualizadores(ventana.TABLA); //No necesita validaciones
                 int exponente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero por el cual quiere elevar la Matriz"));
                 ventana.tablaResultado.llenar(calculoDecimal.elevar(ventana.tabla1.getMatrizDecimal(), exponente));
+                }
             }
         };
         

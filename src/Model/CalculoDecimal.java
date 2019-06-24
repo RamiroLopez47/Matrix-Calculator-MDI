@@ -103,7 +103,7 @@ public class CalculoDecimal {
         float arregloaux[][] = new float[arreglo.length][arreglo[0].length];
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
-                arregloaux[i][j] += arreglo[i][j];
+                arregloaux[i][j] = arreglo[i][j];
             }
         }
         //exponente = 0, la matiz es igual a matriz identidad
