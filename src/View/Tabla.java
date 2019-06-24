@@ -31,7 +31,7 @@ public class Tabla extends JTable /*implements KeyListener*/ {
     public DefaultTableModel modelo;
     private TableColumnModel modeloColumna;
     private String valorPorDefecto;
-    private Icon iconoFacePalm = new ImageIcon(getClass().getResource("/Icons/facePalm.png"));
+    private Icon iconoFacePalm = new ImageIcon(getClass().getResource("/Icons/facePalm2.png"));
 
     /**
      * Construye una tabla con el tamaño especificado en una posicion
