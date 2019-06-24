@@ -103,7 +103,7 @@ public class CalculoDecimal {
         float arregloaux[][] = new float[arreglo.length][arreglo[0].length];
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo.length; j++) {
-                arregloaux[i][j] = arreglo[i][j];
+                arregloaux[i][j] += arreglo[i][j];
             }
         }
         //exponente = 0, la matiz es igual a matriz identidad
@@ -145,12 +145,18 @@ public class CalculoDecimal {
             for (int j = 0; j < arreglo2[i].length; j++) {
                 for (int k = 0; k < arreglo2.length; k++) {
                     arreglo3[i][j] += arreglo[i][k] * arreglo2[k][j];
+                
                 }
             }
         }
+       /* for (int i = 0; i < arreglo.length; i++) {
+            for (int j = 0; j < arreglo[i].length; j++) {
+                arreglo3[i][j] += arreglo[i][j]*arreglo[i][j];
+            }
+        }*/
+
         return (arreglo3);
     }
-
     /**
      * Método para encontrar el rango de una matriz.
      * FUENTE: https://www.geeksforgeeks.org/program-for-rank-of-matrix/
