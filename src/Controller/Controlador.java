@@ -16,6 +16,7 @@ import View.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Util.Validations;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -349,7 +350,51 @@ public class Controlador implements ActionListener {
             }
         };
         ventana.listaBotones.get("interseccion").addActionListener(interseccion);
-
+        
+        ActionListener sumar = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.mismoTamanio(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal())) {
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(calculoDecimal.sumar(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal()));
+                }
+            }
+        };
+        ventana.listaBotones.get("sumar").addActionListener(sumar);
+        
+        ActionListener restar = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.mismoTamanio(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal())) {
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(calculoDecimal.restar(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal()));
+                }
+            }
+        };
+        ventana.listaBotones.get("restar").addActionListener(restar);
+        
+        ActionListener multiplicarPorM = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar.columnaIgualFila(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal())) {
+                    ventana.resetearVisualizadores(ventana.TABLA);
+                    ventana.tablaResultado.llenar(calculoDecimal.multiplicarporM(ventana.tabla1.getMatrizDecimal(), ventana.tabla2.getMatrizDecimal()));
+                }
+            }  
+        };
+        ventana.listaBotones.get("multiplicam").addActionListener(multiplicarPorM);
+        
+        ActionListener multiplicarPorF = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana.resetearVisualizadores(ventana.TABLA); //No necesita validaciones
+                int exponente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero por el cual quiere multiplicar cada factor de la Matriz"));
+                ventana.tablaResultado.llenar(calculoDecimal.multiplicarPorN(ventana.tabla1.getMatrizDecimal(), exponente));
+            }
+        };
+        
+        ventana.listaBotones.get("multiplicaf").addActionListener(multiplicarPorF);
+        
     }
 
     //ventana.JLresultado.setText("El rango es: " + String.valueOf(calculoDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
