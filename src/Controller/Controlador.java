@@ -396,6 +396,16 @@ public class Controlador implements ActionListener {
         
         ventana.listaBotones.get("multiplicaf").addActionListener(multiplicarPorF);
         
+        ActionListener elevar = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana.resetearVisualizadores(ventana.TABLA); //No necesita validaciones
+                int exponente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero por el cual quiere multiplicar cada factor de la Matriz"));
+                ventana.tablaResultado.llenar(calculoDecimal.elevar(ventana.tabla1.getMatrizDecimal(), exponente));
+            }
+        };
+        
+        ventana.listaBotones.get("elevar").addActionListener(elevar);
     }
 
     //ventana.JLresultado.setText("El rango es: " + String.valueOf(calculoDecimal.rangoMatriz(ventana.tabla1.getMatrizDecimal())));
