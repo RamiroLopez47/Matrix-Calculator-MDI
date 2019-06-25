@@ -54,6 +54,7 @@ public class VentanaPrincipal extends JFrame {
 
     public VentanaPrincipal() {
         super("MATRIX CALCULATOR");
+        setIconImage(new ImageIcon(getClass().getResource("../Icons/LogoMatrix.png")).getImage());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Abrir ventana maximizada
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //Finalizar Ejecucion al cerrarla
 
