@@ -239,7 +239,7 @@ public class VentanaPrincipal extends JFrame {
         listaBotones.put("elevar", new Boton("Elevar", Boton.ESTANDAR, OPERACION_DECIMAL));
         listaBotones.put("sumar", new Boton("Sumar", Boton.ESTANDAR, OPERACION_DECIMAL));
         listaBotones.put("restar", new Boton("Restar", Boton.ESTANDAR, OPERACION_DECIMAL));
-        listaBotones.put("interseccion", new Boton("Determinante", Boton.ESTANDAR, OPERACION_BINARIA));
+        listaBotones.put("interseccion", new Boton("Interseccion", Boton.ESTANDAR, OPERACION_BINARIA));
         listaBotones.put("diferencia", new Boton("Diferencia", Boton.ESTANDAR, OPERACION_BINARIA));
         listaBotones.put("complemento", new Boton("Complemento", Boton.ESTANDAR, OPERACION_BINARIA));
         listaBotones.put("traspuesta_binaria", new Boton("Traspuesta", Boton.ESTANDAR, OPERACION_BINARIA));
