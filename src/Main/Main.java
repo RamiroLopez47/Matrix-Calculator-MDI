@@ -23,5 +23,4 @@ public class Main {
         Controlador controlador = new Controlador(ventana);
         controlador.lanzar();
     }
-    
 }
